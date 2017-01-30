@@ -1,0 +1,46 @@
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+body {margin:0;background-color:white;}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover:not(.active) {
+    background-color: #111;
+}
+
+.active {
+    background-color: #4CAF50;
+}
+
+#admin_user {position: absolute; margin-left: 200px;top: 100px; background-color: lightblue;}
+#admin_product {position: absolute; margin-left: 400px;top: 100px; background-color: lightblue;}
+#admin_categorie {position: absolute; margin-left: 600px;top: 100px; background-color: lightblue;}
+
+.auth {position: absolute; margin-left: 400px;top: 900px;}
+
+.block {position: relative; margin-left: 400px;top: 100px;}
+.bandeau1 {position : absolute; display: inline; top: 400px; height: 400px; width:  400px; margin-left :370px;}
+.bandeau2 {position : absolute; display: inline; top: 400px; height: 400px; width: 400px; margin: 0;}
+.bandeau3 {position : absolute; display: inline; top: 400px; height: 400px; width: 400px; margin: 0;margin-left :670px;}
+
+hover:not(.bandeau1) {background-color: #111;}
+
