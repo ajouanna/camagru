@@ -1,17 +1,9 @@
 <?PHP
 function setup($dbh)
 {
-	$sql = "CREATE DATABASE IF NOT EXISTS ".$dbh->getDbname();
-	echo $sql.PHP_EOL;
-
-	$result = $dbh->exec($sql); 
-
-	$sql = "USE camagru";
-	$result = $dbh->exec($sql); 
-
 	$sql = "CREATE TABLE IF NOT EXISTS `User` ( 
 			`id` INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-			`name` varchar(8) NOT NULL, 
+			`login` varchar(8) NOT NULL, 
 			`mail` varchar(255) NOT NULL, 
 			`passwd` varchar(255) NOT NULL,
 			`profile` ENUM('NORMAL', 'ADMIN') NOT NULL,
