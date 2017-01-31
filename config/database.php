@@ -1,12 +1,7 @@
 <?PHP
-require_once("../MyPDO.php");
-require_once('setup.php');
-try {
-	$pdo = new MyPDO("camagru.ini");
-	setup($pdo);
-} catch (PDOException $e) {
-	print "Erreur : " . $e->getMessage() . PHP_EOL;
-	die();
-}
-
+$DB_HOST = 'localhost';
+$DB_NAME = 'camagru';
+$DB_DSN = "mysql:host=".$DB_HOST.";dbname=".$DB_NAME;
+$DB_USER = 'root';
+$DB_PASSWORD = 'root';
 ?>

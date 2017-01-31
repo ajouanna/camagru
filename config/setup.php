@@ -1,6 +1,15 @@
 <?PHP
-function setup($dbh)
+require 'database.php';
+
+function setup($dbh,$dbname)
 {
+	$sql = "CREATE DATABASE IF NOT EXISTS ".$dbname;
+	echo $sql.PHP_EOL;
+	$result = $dbh->exec($sql); 
+
+	$sql = "USE ".$dbname;
+	$result = $dbh->exec($sql); 
+
 	$sql = "CREATE TABLE IF NOT EXISTS `User` ( 
 			`id` INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 			`login` varchar(8) NOT NULL, 
@@ -37,4 +46,18 @@ function setup($dbh)
 		)";
 	$result = $dbh->exec($sql); 
 }
+
+$dsn = "mysql:host=".$DB_HOST;
+
+echo $DB_DSN.PHP_EOL;
+echo $dsn.PHP_EOL;
+echo $DB_USER;
+echo $DB_PASSWORD;
+$db = new PDO(  $dsn,
+                $DB_USER,
+                $DB_PASSWORD
+            );
+$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+setup($db,$DB_NAME);
+
 ?>
