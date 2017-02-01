@@ -50,4 +50,13 @@ class User
         else 
             return false;
     }
+
+    public function checkCredentials($db)
+    {
+        $sql = 'SELECT count(*) FROM User WHERE login ="'.$this->login.'" AND passwd = "'.$this->passwd.'"';
+        $count = $db->query($sql)->fetchColumn();
+        if ($count > 0)
+            return true;
+        return false;
+    }
 }
