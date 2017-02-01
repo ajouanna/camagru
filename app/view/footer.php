@@ -1,4 +1,4 @@
 <footer class="row">
-Camagru, un projet de xmillero et ajouanna
+	<p align='right'>Camagru &copy; xmillero/ajouanna 2017</p>
 </footer>
 </body>

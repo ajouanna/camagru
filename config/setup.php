@@ -4,7 +4,6 @@ require 'database.php';
 function setup($dbh,$dbname)
 {
 	$sql = "CREATE DATABASE IF NOT EXISTS ".$dbname;
-	echo $sql.PHP_EOL;
 	$result = $dbh->exec($sql); 
 
 	$sql = "USE ".$dbname;
@@ -16,7 +15,8 @@ function setup($dbh,$dbname)
 			`mail` varchar(255) NOT NULL, 
 			`passwd` varchar(255) NOT NULL,
 			`profile` ENUM('NORMAL', 'ADMIN') NOT NULL,
-			`creation_date` datetime 
+			`creation_date` datetime,
+			`status` ENUM('NOT_ACTIVATED', 'ACTIVATED') NOT NULL
 		) ";
 	$result = $dbh->exec($sql); 
 
@@ -48,11 +48,6 @@ function setup($dbh,$dbname)
 }
 
 $dsn = "mysql:host=".$DB_HOST;
-
-echo $DB_DSN.PHP_EOL;
-echo $dsn.PHP_EOL;
-echo $DB_USER;
-echo $DB_PASSWORD;
 $db = new PDO(  $dsn,
                 $DB_USER,
                 $DB_PASSWORD

@@ -6,6 +6,6 @@
 <body>
   <header>
     <div>
-      <h1>Creation d'un utilisateur</h1>
+      <h1>Bienvenus sur le site Camagru</h1>
     </div>
   </header>

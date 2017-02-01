@@ -6,7 +6,7 @@
 
   <div class="form-group">
     <label for="mail">Mail :</label>
-    <input type="text" class="form-control" name="mail" size="30">
+    <input type="email" class="form-control" name="mail" size="30">
   </div>
 
   <div class="form-group">
@@ -16,4 +16,4 @@
 
   <button type="submit" value="submit" class="btn">Submit</button>
 </form>
-<?php echo  'The total number of users is currently ' . $db->countAllUsers(); ?>
+<?php echo  "Le nombre total d'utilisateurs est actuellement de " . $db->countAllUsers(); ?>
