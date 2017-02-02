@@ -12,7 +12,7 @@
 </head>
 <div class="container">
 <?php
-    include('../view/header.php');
+    include('../view/header_create_account.php');
     include('../view/content_create_account.php');
     include('../view/footer.php');
 ?>

@@ -3,6 +3,10 @@ body {
 	padding: 0;
 }
 
+#connect_button {
+	display: initial;
+}
+
 .logo {
 	float: left;
 	height: 100%;
@@ -40,7 +44,7 @@ body {
 
 label {
 	display: inline-block;
-	width: 50px;
+	width: 70px;
 	text-align: right;
 }​
 
