@@ -1,6 +1,6 @@
 <?php
 	session_start();
-	require __DIR__ . '/app/control/app_create_account.php';
+	require __DIR__ . '/control/app_create_account.php';
 ?>
 
 <!DOCTYPE html>
@@ -12,9 +12,9 @@
 </head>
 <div class="container">
 <?php
-    include('app/view/header.php');
-    include('app/view/content_create_account.php');
-    include('app/view/footer.php');
+    include('view/header.php');
+    include('view/content_create_account.php');
+    include('view/footer.php');
 ?>
 </div>
 </html>

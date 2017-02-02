@@ -1,6 +1,10 @@
 <?php
+// affichage de la page d'accueil
+// ce fichier est le seul que l'on laisse a la racine du site, afin de satisfaire le sujet
+// du projet. Tous les autres fichiers de presentation sont dns le repertoire view
+
   session_start();
-  require __DIR__ . '/app/control/app_index.php';
+  require __DIR__ . '/control/app_index.php';
 ?>
 
 <!DOCTYPE html>
@@ -12,9 +16,9 @@
 </head>
 <div class="container">
 <?php
-    include('app/view/header.php');
-    include('app/view/content_index.php');
-    include('app/view/footer.php');
+    include('view/header.php');
+    include('view/content_index.php');
+    include('view/footer.php');
 ?>
 </div>
 </html>

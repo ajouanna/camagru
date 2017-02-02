@@ -59,7 +59,7 @@ span.onclick = function() {
 create_button.onclick = function() {
 	var loc = window.location;
 	console.log(loc);
-	window.location.pathname = 'camagru/create_account.php';
+	window.location.pathname = 'camagru/view/create_account.php';
 }
 
 // When the user clicks anywhere outside of the modal, close it
