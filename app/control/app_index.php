@@ -28,7 +28,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 					echo "Erreur : login ou mdp errone";
 				}
 				else
+				{
 					echo "Utilisateur ".$login." loggue avec succes".PHP_EOL;
+					$_SESSION['logged_on_user'] = $login;
+					$_SESSION['status'] = "";
+					$_SESSION['profile'] = "NORMAL"; // FIX THIS : prendre ce champ en bdd
+				}
 		} catch (NestedValidationException $e) {
 			echo "<ul>";
 			foreach ($e->getMessages() as $message) {
