@@ -36,7 +36,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 					echo "Erreur : login ou mdp deja utilise";
 				}
 				else
+				{
+					$message = "Veuillez cliquer sur le lien suivant pour confirmer votre inscription : http://localhost:8080/camagru"; 
+					mail($mail, 'Votre inscription a Camagru',$message);
 					echo "Utilisateur ".$login." cree avec succes. Un mail vous a ete envoye, veuillez cliquer sur le lien qu'il contient pour vous authentifier".PHP_EOL;
+				}
 			}
 		} catch (NestedValidationException $e) {
 			echo "<ul>";

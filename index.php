@@ -1,4 +1,5 @@
 <?php
+  session_start();
   require __DIR__ . '/app/control/app_index.php';
 ?>
 

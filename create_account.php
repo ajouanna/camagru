@@ -1,5 +1,6 @@
 <?php
-  require __DIR__ . '/app/control/app_create_account.php';
+	session_start();
+	require __DIR__ . '/app/control/app_create_account.php';
 ?>
 
 <!DOCTYPE html>
