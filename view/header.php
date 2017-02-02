@@ -2,7 +2,7 @@
 function user_logged()
 {
 	echo "<div class=\"user_logged\">Bonjour <b>".$_SESSION['logged_on_user']."</b></div>\n";
-	echo "<br/><a href=\"./control/logout.php\">Se d&eacute;connecter</a>";
+	echo "<br/><a href=\"../control/logout.php\">Se d&eacute;connecter</a>";
 	// echo "<br/><a href=\"./user_account.php\">Mon compte</a>";
 }
 
@@ -57,7 +57,7 @@ function print_status()
     <div class="header">
 		<div class="logo">
 		<a href="./index.php">
-			<img class="logo_img" src="img/madeinfrance.jpg" alt="Camagru" title="Camagru"/>
+			<img class="logo_img" src="../img/madeinfrance.jpg" alt="Camagru" title="Camagru"/>
 		</a>
 		</div>
 		<div class="header_right">
