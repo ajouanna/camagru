@@ -39,7 +39,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 				{
 					$message = "Veuillez cliquer sur le lien suivant pour confirmer votre inscription : http://localhost:8080/camagru"; 
 					mail($mail, 'Votre inscription a Camagru',$message);
-					echo "Utilisateur ".$login." cree avec succes. Un mail vous a ete envoye, veuillez cliquer sur le lien qu'il contient pour vous authentifier".PHP_EOL;
+					// echo "Utilisateur ".$login." cree avec succes. Un mail vous a ete envoye, veuillez cliquer sur le lien qu'il contient pour vous authentifier".PHP_EOL;
+?>
+<script>
+alert('Utilisateur cree avec succes! Un lien de validation va vous etre envoye par email');
+window.location.pathname = '/camagru/index.php';
+</script>
+<?PHP
 				}
 			}
 		} catch (NestedValidationException $e) {
