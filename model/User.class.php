@@ -53,10 +53,31 @@ class User
 
     public function checkCredentials($db)
     {
+        // cette methode recupere en base le profil de l'utilisateur a partir de login et passwd
+        // et renvoie true si ces valeurs sont correctes, false sinon
+
+        /*
         $sql = 'SELECT count(*) FROM User WHERE login ="'.$this->login.'" AND passwd = "'.$this->passwd.'"';
         $count = $db->query($sql)->fetchColumn();
-        if ($count > 0)
-            return true;
-        return false;
+        if ($count > 0) 
+                return true;
+        return false; */
+        $sql = 'SELECT PROFILE FROM User WHERE login ="'.$this->login.'" AND passwd = "'.$this->passwd.'"';
+        $statement = $db->prepare($sql);
+        $statement->execute();
+        $result = $statement->fetchColumn();
+
+        if ($result === false)
+            return false;
+        $this->profile=$result;
+        return true;
+    }
+
+    public function listAll($db)
+    {
+        $statement = $db->prepare("SELECT login, mail, profile, status FROM User");
+        $statement->execute();
+        $result = $statement->fetchAll();
+        return $result;
     }
 }

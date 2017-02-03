@@ -15,9 +15,12 @@ function user_notlogged()
 
 function admin_page()
 {
+	require('admin_page_button.php');
+	/*
 	echo "<div>";
 	echo "<a class=\"admin_page\" href=\"./admin.php\">Admin</a>";
 	echo "</div>";
+	*/
 }
 
 function print_user_auth()
@@ -26,7 +29,7 @@ function print_user_auth()
 		user_notlogged();
 	else
 		user_logged();
-	if ($_SESSION['profil'] === "admin")
+	if ($_SESSION['profile'] === "ADMIN")
 		admin_page();
 }
 
@@ -41,14 +44,11 @@ function print_status()
 <head>
 <title>Camagru</title>
 <meta content="width=device-width, initial-scale=1" name="viewport" />
-<link rel="stylesheet" href="css/application.css" />
+<link rel="stylesheet" href="/camagru/css/application.css" />
 </head>
 </html>
 <body>
   <header>
-	<div>
-	  <h1>Bienvenus sur le site Camagru</h1>
-	</div>
 	<div class="header">
 		<div class="logo">
 		<a href="/camagru/index.php">

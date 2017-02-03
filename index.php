@@ -21,4 +21,7 @@
     include('view/footer.php');
 ?>
 </div>
+<?php
+footer();
+?>
 </html>
