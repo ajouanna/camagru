@@ -37,6 +37,13 @@ function print_status()
 }
 ?>
 
+<html>
+<head>
+<title>Camagru</title>
+<meta content="width=device-width, initial-scale=1" name="viewport" />
+<link rel="stylesheet" href="css/application.css" />
+</head>
+</html>
 <body>
   <header>
 	<div>

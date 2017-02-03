@@ -48,6 +48,10 @@ label {
 	text-align: right;
 }​
 
+#myModal {
+	display: none; /* Hidden by default */
+}
+
 .modal {
 	display: none; /* Hidden by default */
 	position: fixed; /* Stay in place */
