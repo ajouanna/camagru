@@ -29,7 +29,7 @@ function print_user_auth()
 		user_notlogged();
 	else
 		user_logged();
-	if ($_SESSION['profile'] === "ADMIN")
+	if (isset($_SESSION['profile']) && $_SESSION['profile'] === "ADMIN")
 		admin_page();
 }
 

@@ -13,9 +13,12 @@ class User
     public function __construct($data = null)
     {
         if (is_array($data)) {
-            $this->login = $data['login'];
-            $this->mail = $data['mail'];
-            $this->passwd = hash('whirlpool',$data['passwd']); // le mdp est encode directement
+			if (isset($data['login']))
+				$this->login = $data['login'];
+			if (isset($data['mail']))
+				$this->mail = $data['mail'];
+			if (isset($data['passwd']))
+				$this->passwd = hash('whirlpool',$data['passwd']); // le mdp est encode directement
             $this->profile = 'NORMAL';
             $this->status = 'NOT_ACTIVATED';
         }

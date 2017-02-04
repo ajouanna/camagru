@@ -6,8 +6,11 @@ class DBAccess
 
     public function __construct($DB_DSN, $DB_USER, $DB_PASSWORD)
     {
-        // FIX THIS : tester les parametres pour gerer les erreurs
-        $db = new PDO ($DB_DSN, $DB_USER, $DB_PASSWORD);
+        // si le password est vide, se connecter sans
+		if (empty($DB_PASSWORD))
+			$db = new PDO ($DB_DSN, $DB_USER);
+		else
+			$db = new PDO ($DB_DSN, $DB_USER, $DB_PASSWORD);
         $this->db = $db;
         $this->db->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
     }
