@@ -20,24 +20,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 			try 
 			{
-					$data = array(
-						'login' => $login,
-						'passwd' => $passwd,
-					);
-					$user = new User($data);
-					$db = new DBAccess($DB_DSN, $DB_USER, $DB_PASSWORD);
-					if (!$user->checkCredentials($db->db))
-					{
-						echo "Erreur : login ou mdp errone";
-					}
-					else
-					{	
-						// TBD : si l'utilisateur n'est pas confirme, le lui dire et ne pas accepter la connexion
-						echo "Utilisateur ".$login." loggue avec succes".PHP_EOL;
-						$_SESSION['logged_on_user'] = $login;
-						$_SESSION['status'] = "";
-						$_SESSION['profile'] = $user->profile;
-					}
+				$data = array(
+					'login' => $login,
+					'passwd' => $passwd,
+				);
+				$user = new User($data);
+				$db = new DBAccess($DB_DSN, $DB_USER, $DB_PASSWORD);
+				if (!$user->checkCredentials($db->db))
+				{
+					echo "Erreur : login ou mdp errone";
+				}
+				else
+				{	
+					// TBD : si l'utilisateur n'est pas confirme, le lui dire et ne pas accepter la connexion
+					echo "Utilisateur ".$login." loggue avec succes".PHP_EOL;
+					$_SESSION['logged_on_user'] = $login;
+					$_SESSION['status'] = "";
+					$_SESSION['profile'] = $user->profile;
+				}
 			} catch (NestedValidationException $e) {
 				echo "<ul>";
 				foreach ($e->getMessages() as $message) {
