@@ -17,6 +17,7 @@ function setup($dbh,$dbname)
 			`profile` ENUM('NORMAL', 'ADMIN') NOT NULL,
 			`creation_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
 			`status` ENUM('NOT_ACTIVATED', 'ACTIVATED') NOT NULL,
+			`cle` varchar(32),
 			PRIMARY KEY (login, mail)
 		) ";
 	$result = $dbh->exec($sql); 

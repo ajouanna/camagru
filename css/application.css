@@ -32,6 +32,10 @@ tr:nth-child(even) {
 	height: auto;
 }
 
+.header_right {
+	float: right;
+}
+
 .form {
 	background-color: #f9f9fb;
 	border-radius: 3px;
@@ -63,7 +67,11 @@ label {
 	text-align: right;
 }​
 
-#myModal {
+#loginModal {
+	display: none; /* Hidden by default */
+}
+
+#forgotPasswdModal {
 	display: none; /* Hidden by default */
 }
 
@@ -104,3 +112,4 @@ label {
 	text-decoration: none;
 	cursor: pointer;
 }
+

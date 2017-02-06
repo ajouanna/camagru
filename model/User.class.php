@@ -6,6 +6,7 @@ class User
     public $login;
     public $mail;
     public $passwd;
+    public $cle;
     public $profile;
     public $creation_date;
     public $status;
@@ -19,6 +20,8 @@ class User
 				$this->mail = $data['mail'];
 			if (isset($data['passwd']))
 				$this->passwd = hash('whirlpool',$data['passwd']); // le mdp est encode directement
+            if (isset($data['cle']))
+                $this->cle = $data['cle'];
             $this->profile = 'NORMAL';
             $this->status = 'NOT_ACTIVATED';
         }
@@ -38,13 +41,14 @@ class User
         if ($this->checkUserNonexistant($db))
         {
             $statement = $db->prepare('INSERT INTO User
-            (login, mail, passwd, profile, creation_date, status)
+            (login, mail, passwd, cle, profile, creation_date, status)
             VALUES
-            (:login, :mail, :passwd, :profile, NOW(), :status)'
+            (:login, :mail, :passwd, :cle, :profile, NOW(), :status)'
             );
             $statement->bindParam(':login', $this->login);
             $statement->bindParam(':mail', $this->mail);
             $statement->bindParam(':passwd', $this->passwd);
+            $statement->bindParam(':cle', $this->cle);
             $statement->bindParam(':profile', $this->profile);
             $statement->bindParam(':status', $this->status);
             $statement->execute();
@@ -82,5 +86,33 @@ class User
         $statement->execute();
         $result = $statement->fetchAll();
         return $result;
+    }
+
+    public function getDb($db)
+    {
+        // cette methode renvoie l'ensemble des donnees d'un user a partir de login+mail
+        $statement = $db->prepare('SELECT passwd, cle, profile, status FROM User WHERE login ="'.$this->login.'" AND mail = "'.$this->mail.'"');
+        $statement->execute();
+        $result = $statement->fetchAll();
+        if ($result === false)
+            return false;
+        echo "DEBUG :";
+        print_r($result);
+        $value = $result[0];
+        $this->passwd = $value['passwd'];
+        $this->cle = $value['cle'];
+        $this->profile = $value['profile'];
+        $this->status = $value['status'];        
+        return true;
+    }
+
+    public function setDb($db)
+    {
+        // cette methode modifie en base les donnees passwd et status d'un user a partir de login+passwd
+        $sql = 'UPDATE User SET PASSWD=:passwd, STATUS=:status WHERE login ="'.$this->login.'" AND passwd = "'.$this->passwd.'"';
+        $statement = $db->prepare($sql);
+        $statement->bindParam(':passwd', $this->passwd);
+        $statement->bindParam(':status', $this->status);        
+        return ($statement->execute());
     }
 }
