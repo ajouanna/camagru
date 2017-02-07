@@ -32,11 +32,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 				}
 				else
 				{	
-					// TBD : si l'utilisateur n'est pas confirme, le lui dire et ne pas accepter la connexion
-					echo "Utilisateur ".$login." loggue avec succes".PHP_EOL;
-					$_SESSION['logged_on_user'] = $login;
-					$_SESSION['status'] = "";
-					$_SESSION['profile'] = $user->profile;
+					if ($user->status !== 'ACTIVATED')
+					{
+						echo "Erreur : veuillez vous activer avant de vous conecter !";
+					}
+					else
+					{
+						// TBD : si l'utilisateur n'est pas confirme, le lui dire et ne pas accepter la connexion
+						echo "Utilisateur ".$login." loggue avec succes".PHP_EOL;
+						$_SESSION['logged_on_user'] = $login;
+						$_SESSION['status'] = "";
+						$_SESSION['profile'] = $user->profile;
+					}
 				}
 			} catch (NestedValidationException $e) {
 				echo "<ul>";
@@ -57,9 +64,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		else
 		{
 			// renvoyer un lien pour resaisir le mdp
-			echo "DEBUG : on va renvoyer un lien...";
+			$data = array('mail' => $mail);
+			$user = new User($data);
+			$db = new DBAccess($DB_DSN, $DB_USER, $DB_PASSWORD);
+			if (!$user->getUserByMail($db->db))
+			{
+				echo "Erreur : mail inconnu";
+			}
+			else
+			{
+				$login = $user->login;
+				$cle = $user->cle;
+				$url="http://$_SERVER[HTTP_HOST]/camagru/control/app_forgot_pw.php".'?login='.urlencode($login).'&mail='.urlencode($mail).'&cle='.urlencode($cle);
+
+					$message = "Veuillez cliquer sur le lien suivant pour modifier votre mot de passe : ".$url;
+					mail($mail, 'Votre demande de changement de mot de passe a Camagru',$message);
+					echo "Demande de changement de mot de passe prise en compte, consultez votre boite mail";
+			}
 		}
 	}
+}
+else if ($_SERVER['REQUEST_METHOD'] === 'GET')
+{
+
 }
 
 $db = new DBAccess($DB_DSN, $DB_USER, $DB_PASSWORD);

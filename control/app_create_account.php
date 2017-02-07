@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 				$data = array(
 					'login' => $login,
 					'mail' => $mail,
-					'passwd' => $passwd,
+					'passwd' => hash('whirlpool',$passwd),
 					'cle' => $cle
 				);
 				$user = new User($data);

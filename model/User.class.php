@@ -19,7 +19,7 @@ class User
 			if (isset($data['mail']))
 				$this->mail = $data['mail'];
 			if (isset($data['passwd']))
-				$this->passwd = hash('whirlpool',$data['passwd']); // le mdp est encode directement
+				$this->passwd = $data['passwd'];
             if (isset($data['cle']))
                 $this->cle = $data['cle'];
             $this->profile = 'NORMAL';
@@ -63,20 +63,16 @@ class User
         // cette methode recupere en base le profil de l'utilisateur a partir de login et passwd
         // et renvoie true si ces valeurs sont correctes, false sinon
 
-        /*
-        $sql = 'SELECT count(*) FROM User WHERE login ="'.$this->login.'" AND passwd = "'.$this->passwd.'"';
-        $count = $db->query($sql)->fetchColumn();
-        if ($count > 0) 
-                return true;
-        return false; */
-        $sql = 'SELECT PROFILE FROM User WHERE login ="'.$this->login.'" AND passwd = "'.$this->passwd.'"';
+        $sql = 'SELECT profile, status FROM User WHERE login ="'.$this->login.'" AND passwd = "'.$this->passwd.'"';
         $statement = $db->prepare($sql);
         $statement->execute();
-        $result = $statement->fetchColumn();
+        $result = $statement->fetchAll();
 
-        if ($result === false)
+        if (count($result) === 0)
             return false;
-        $this->profile=$result;
+        $value = $result[0];
+        $this->profile = $value['profile'];
+        $this->status = $value['status'];
         return true;
     }
 
@@ -94,11 +90,26 @@ class User
         $statement = $db->prepare('SELECT passwd, cle, profile, status FROM User WHERE login ="'.$this->login.'" AND mail = "'.$this->mail.'"');
         $statement->execute();
         $result = $statement->fetchAll();
-        if ($result === false)
+        if (count($result) === 0)
             return false;
-        echo "DEBUG :";
-        print_r($result);
         $value = $result[0];
+        $this->passwd = $value['passwd'];
+        $this->cle = $value['cle'];
+        $this->profile = $value['profile'];
+        $this->status = $value['status'];        
+        return true;
+    }
+
+    public function getUserByMail($db)
+    {
+        // cette methode renvoie l'ensemble des donnees d'un user a partir du mail
+        $statement = $db->prepare('SELECT login, passwd, cle, profile, status FROM User WHERE mail = "'.$this->mail.'"');
+        $statement->execute();
+        $result = $statement->fetchAll();
+        if (count($result) === 0)
+            return false;
+        $value = $result[0];
+        $this->login = $value['login'];
         $this->passwd = $value['passwd'];
         $this->cle = $value['cle'];
         $this->profile = $value['profile'];
@@ -115,4 +126,13 @@ class User
         $statement->bindParam(':status', $this->status);        
         return ($statement->execute());
     }
+    public function setPasswdByLoginMail($db)
+    {
+        // cette methode modifie en base les donnees passwd d'un user a partir de login+mail
+        $sql = 'UPDATE User SET PASSWD=:passwd WHERE login ="'.$this->login.'" AND mail = "'.$this->mail.'"';
+        $statement = $db->prepare($sql);
+        $statement->bindParam(':passwd', $this->passwd);
+        return ($statement->execute());
+    }
+
 }
