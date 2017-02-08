@@ -3,9 +3,7 @@
 function user_logged()
 {
 	echo "<div class=\"user_logged\">Bonjour <b>".$_SESSION['logged_on_user']."</b></div>\n";
-	require("logout_button.php");
-	// echo "<br/><a href=\"/camagru/control/logout.php\">Se d&eacute;connecter</a>";
-	// echo "<br/><a href=\"./user_account.php\">Mon compte</a>";
+	require("logged_buttons.php");
 }
 
 function user_notlogged()
@@ -35,13 +33,7 @@ function print_status()
 }
 ?>
 
-<html>
-<head>
-<title>Camagru</title>
-<meta content="width=device-width, initial-scale=1" name="viewport" />
-<link rel="stylesheet" href="/camagru/css/application.css" />
-</head>
-</html>
+
 <body>
   <header>
 	<div class="header">

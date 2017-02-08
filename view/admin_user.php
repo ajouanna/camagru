@@ -7,7 +7,7 @@ require __DIR__ . '/../control/app_admin_user.php';
 <!DOCTYPE html>
 <html>
 <head>
-<title>Camagru</title>
+<title>Camagru : administration utilisateur</title>
 <meta content="width=device-width, initial-scale=1" name="viewport" />
 <link rel="stylesheet" href="/camagru/css/application.css" />
 </head>

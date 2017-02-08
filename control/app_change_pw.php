@@ -44,7 +44,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_SESSION['change_pw_login'])
 				unset($_SESSION['change_pw_login']);
 				unset($_SESSION['change_pw_mail']);
 				unset($_SESSION['change_pw_cle']);
-				header('location:../index.php');
+				// header('location:../index.php');
+?>
+<script>
+window.location.pathname = '/camagru/index.php';
+</script>
+<?PHP
 			}
 		}
 	}

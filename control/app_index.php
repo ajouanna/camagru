@@ -2,8 +2,33 @@
 /* ce script traite la page d'accueil */
 require __DIR__ . '/../config/database.php';
 require __DIR__ . '/../model/User.class.php';
+require __DIR__ . '/../model/Image.class.php';
 require __DIR__ . '/../model/DBAccess.class.php';
 
+function list_best_photos()
+{
+	require __DIR__ . '/../config/database.php';
+
+	echo "<h2>Les photos les plus likees du moment</h2>";
+	$db = new DBAccess($DB_DSN, $DB_USER, $DB_PASSWORD);
+	$image = new Image();
+
+	$result = $image->listBestPhotos($db->db);
+	?>
+	<table>
+	  <tr>
+	    <th>Photo</th>
+	    <th>Likes</th>
+	  </tr>
+	<?PHP
+	foreach ($result as $value) 
+	{
+		echo "<tr>";
+		echo "<td>".$value['image_name']."</td>";
+		echo "<td>".$value['likes']."</td>";
+		echo "</tr>";
+	}
+}
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	if (isset($_POST['submit']))
