@@ -41,7 +41,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_SESSION['change_pw_login'])
 				$user->passwd = hash('whirlpool',$new_passwd);
 				$user->setPasswdByLoginMail($db->db);
 				echo "DEBUG : user mis a jour";
-				// A FINIR : faire un unset sur $_SESSION['change_pw_login'] etc. et retourner a  index.php
+				unset($_SESSION['change_pw_login']);
+				unset($_SESSION['change_pw_mail']);
+				unset($_SESSION['change_pw_cle']);
+				header('location:../index.php');
 			}
 		}
 	}

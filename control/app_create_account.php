@@ -66,16 +66,19 @@ window.location.pathname = '/camagru/index.php';
 
 }
 else if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-	// si je suis dans un GET , c'est pour activer l'utilisateur precedemment cree
-	$login = trim($_GET['login']);
-	$mail = trim($_GET['mail']);
-	$cle = trim($_GET['cle']);
-	if (empty($login) || empty($mail) || empty ($cle))
+	// j'arrive ici dans 2 cas : quand l'utilisateur a demandé la création
+	// de son compte depuis la page index.php (dans ce cas il n'y a pas de parametres)
+	// ou quand il a clique sur le lien de validation depuis le mail qu'il a recu
+	// (dans ce cas il y a les parametres login, cle et mail)
+	if (empty($_GET['login']) || empty($_GET['mail']) || empty ($_GET['cle']))
 	{
-		echo "ERREUR : les champs login, mail et cle doivent etre remplis !";
+		echo "DEBUG : les champs login, mail et cle doivent etre remplis !";
 	}
 	else
 	{
+		$login = trim($_GET['login']);
+		$mail = trim($_GET['mail']);
+		$cle = trim($_GET['cle']);
 		// recuperer le user en bdd et verifier la cle (sauf si deja active)
 		$data = array('login' => $login, 'mail' => $mail);
 		$user = new User($data);
