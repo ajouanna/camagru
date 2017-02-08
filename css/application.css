@@ -1,4 +1,4 @@
-
+﻿
 table {
     font-family: arial, sans-serif;
     border-collapse: collapse;
@@ -17,6 +17,11 @@ tr:nth-child(even) {
 
 #connect_button {
 	display: initial;
+}
+
+.vignette {
+	width:200px;
+	height:auto;
 }
 
 .montage {

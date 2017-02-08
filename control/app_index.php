@@ -24,7 +24,7 @@ function list_best_photos()
 	foreach ($result as $value) 
 	{
 		echo "<tr>";
-		echo "<td>".$value['image_name']."</td>";
+		echo "<td><img class='vignette' src='".$value['image_name']."' alt='texte alternatif' /></td>";
 		echo "<td>".$value['likes']."</td>";
 		echo "</tr>";
 	}
