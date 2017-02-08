@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 			{
 				$data = array(
 					'login' => $login,
-					'passwd' => $passwd,
+					'passwd' => hash('whirlpool',$passwd),
 				);
 				$user = new User($data);
 				$db = new DBAccess($DB_DSN, $DB_USER, $DB_PASSWORD);

@@ -16,11 +16,6 @@ function user_notlogged()
 function admin_page()
 {
 	require('admin_page_button.php');
-	/*
-	echo "<div>";
-	echo "<a class=\"admin_page\" href=\"./admin.php\">Admin</a>";
-	echo "</div>";
-	*/
 }
 
 function print_user_auth()
@@ -35,7 +30,7 @@ function print_user_auth()
 
 function print_status()
 {
-	if ($_SESSION['status'] !== "")
+	if (!empty($_SESSION['status']))
 		echo $_SESSION['status'];
 }
 ?>

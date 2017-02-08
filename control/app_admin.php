@@ -10,7 +10,6 @@ function list_users()
 
 	$data = array(
 						'login' => $_SESSION['logged_on_user'],
-						'passwd' => $passwd,
 					);
 	$user = new User($data);
 	$db = new DBAccess($DB_DSN, $DB_USER, $DB_PASSWORD);
