@@ -18,7 +18,4 @@ include('../view/content_admin_user.php');
 include('../view/footer.php');
 ?>
 </div>
-<?php
-footer();
-?>
 </html>

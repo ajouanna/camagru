@@ -1,6 +1,5 @@
 <?php
 	session_start();
-	require __DIR__ . '/../control/app_create_account.php';
 ?>
 
 <!DOCTYPE html>
@@ -10,14 +9,13 @@
 <meta content="width=device-width, initial-scale=1" name="viewport" />
 <link rel="stylesheet" href="../css/application.css" />
 </head>
-<div class="container">
+
 <?php
+	require __DIR__ . '/../control/app_create_account.php';
+	require __DIR__ . '/../control/captcha.php'; 
     include('../view/header_create_account.php');
     include('../view/content_create_account.php');
     include('../view/footer.php');
 ?>
-</div>
-<?php
-footer();
-?>
+
 </html>

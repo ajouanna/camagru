@@ -18,7 +18,11 @@ tr:nth-child(even) {
 #connect_button {
 	display: initial;
 }
-
+.footer {
+    height: 100px;
+    position: absolute;
+    bottom: 0;
+}
 .vignette {
 	width:200px;
 	height:auto;
@@ -28,9 +32,15 @@ tr:nth-child(even) {
 	display: inline;
 }
 
+.gallerie {
+	display: inline;
+}
+
 .side {
-	border: 1px;
-	float: left;
+	border-width: 2px;
+	border-style:solid;
+	border-color:black;
+	float: right;
 	width: 30%;
 }
 
@@ -54,7 +64,7 @@ tr:nth-child(even) {
 	border: 1px solid rgba(0, 0, 0, 0.1);
 	border-top: 18px solid #efbd3d;
 	margin: 20px auto;
-	max-width: 300px;
+	max-width: 400px;
 	padding: 20px;
 	text-align: left;
 }

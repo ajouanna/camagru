@@ -8,7 +8,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	$login = trim($_POST['login']);
 	$mail = trim($_POST['mail']);
 	$passwd = trim($_POST['passwd']);
-	if (empty($login) || empty($mail) || empty ($passwd))
+	$captcha = trim($_POST['captcha']);
+	if (empty($login) || empty($mail) || empty ($passwd) || empty($captcha))
 	{
 		echo "ERREUR : tous les champs doivent etre remplis !";
 	}
@@ -20,6 +21,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 			if (!filter_var($mail, FILTER_VALIDATE_EMAIL))
 			{
 				echo "ERREUR : Formal d'email incorrect !";
+			}
+			else if ($captcha !== $_SESSION['captcha'])
+			{
+				echo "ERREUR : captcha erroné";
 			}
 			else
 			{

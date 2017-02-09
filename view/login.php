@@ -12,6 +12,7 @@
 	<button id="create_user_button">On ne se connait pas ? Creer un compte !</button>
 
 	<form class="form" action="" method="post">
+		<p>Tapez votre login et mot de passe</p>
   		<div class="form-group">
 		<label for="login">Login :</label>
 		<input type="text" class="form-control" name="login" size="8" maxlength="8">
@@ -21,7 +22,7 @@
 		<label for="passwd">Password:</label>
 		<input type="password" class="form-control" name="passwd">
   		</div>
-  		<button type="submit" name="submit" value="submit" class="btn">Submit</button>
+  		<button type="submit" name="submit" value="submit" class="btn">Valider</button>
 		</form>  
 	<button id="forgotten_passwd_button">Mot de passe oublie ?</button>
 	</div>
@@ -33,11 +34,12 @@
   <div class="modal-content">
 	<span id="fpw_close" class="close">&times;</span>
 	<form class="form" action="" method="post">
+		<p>Tapez votre email pour renouveller votre mot de passe</p>
 		<div class="form-group">
-		<label for="mail">Tapez votre email:</label>
-		<input type="email" class="form-control" name="mail">
+		<label for="mail">mail:</label>
+		<input type="email" class="form-control" name="mail" placeholder="*mail">
   		</div>
-  		<button type="submit" name="submitFp" value="submitFp" class="btn">Submit</button>
+  		<button type="submit" name="submitFp" value="submitFp" class="btn">Valider</button>
 		</form>  
 	</div>
 </div>

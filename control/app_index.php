@@ -14,13 +14,9 @@ function list_best_photos()
 	$image = new Image();
 
 	$result = $image->listBestPhotos($db->db);
-	?>
-	<table>
-	  <tr>
-	    <th>Photo</th>
-	    <th>Likes</th>
-	  </tr>
-	<?PHP
+
+	echo "<table><tr><th>Photo</th><th>Likes</th></tr>";
+
 	foreach ($result as $value) 
 	{
 		echo "<tr>";

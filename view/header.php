@@ -28,6 +28,7 @@ function print_user_auth()
 
 function print_status()
 {
+	// actuellement pas utilise... 
 	if (!empty($_SESSION['status']))
 		echo $_SESSION['status'];
 }

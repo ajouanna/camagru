@@ -18,7 +18,7 @@
 		</form>
 	</div>
 	<div class="side">
-		<p>mettre ici la liste des images deja crees<
+		<p>mettre ici la liste des images deja crees</p>
 	</div>
 </div>
 <script type="text/javascript">
