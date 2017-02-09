@@ -21,8 +21,4 @@ include('../view/header.php');
 include('../view/content_montage.php');
 include('../view/footer.php');
 ?>
-<?php
-footer();
-
-?>
 </html>
