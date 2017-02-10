@@ -44,7 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 				}
 				else
 				{
-					$url="http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]".'?login='.urlencode($login).'&mail='.urlencode($mail).'&cle='.urlencode($cle);
+					$url="http://$_SERVER[HTTP_HOST]$_SERVER['REQUEST_URI']".'?login='.urlencode($login).'&mail='.urlencode($mail).'&cle='.urlencode($cle);
 					echo $url.PHP_EOL;
 					// FIX THIS : il faut envoyer sur une autre page : la page de validation !
 					//$esc_url = htmlspecialchars( $url, ENT_QUOTES, 'UTF-8' );
