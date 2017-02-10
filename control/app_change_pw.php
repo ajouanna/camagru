@@ -9,11 +9,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_SESSION['change_pw_login'])
 	&& isset($_POST['new_passwd']) && isset($_POST['new_new_passwd']) && isset($_POST['submit'])
 	&& $_POST['submit'] ==='OK') 
 {
-	echo "DEBUG : ".$_SESSION['change_pw_login']."<br />";
-	echo "DEBUG : ".$_SESSION['change_pw_mail']."<br />";
-	echo "DEBUG : ".$_SESSION['change_pw_cle']."<br />";
-	echo "DEBUG : ".$_POST['new_passwd']."<br />";
-	echo "DEBUG : ".$_POST['new_new_passwd']."<br />";
 	$data = array(
 					'login' => $_SESSION['change_pw_login'],
 					'mail' => $_SESSION['change_pw_mail'],
@@ -39,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_SESSION['change_pw_login'])
 			else
 			{
 				$user->passwd = hash('whirlpool',$new_passwd);
-				$user->setPasswdByLoginMail($db->db);
+				$user->setPasswdByLogin($db->db);
 				echo "DEBUG : user mis a jour";
 				unset($_SESSION['change_pw_login']);
 				unset($_SESSION['change_pw_mail']);

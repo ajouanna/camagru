@@ -21,14 +21,14 @@ class User
 				$this->passwd = $data['passwd'];
             if (isset($data['cle']))
                 $this->cle = $data['cle'];
-            $this->profile = 'NORMAL';
+            $this->profile = 'NORMAL'; // je n'autorise pas la creation d'un admin par ce biais
             $this->status = 'NOT_ACTIVATED';
         }
     }
 
     public function checkUserNonexistant($db)
     {
-        $sql = 'SELECT count(*) FROM User WHERE login ="'.$this->login.'" OR mail = "'.$this->mail.'"';
+        $sql = 'SELECT count(*) FROM User WHERE login ="'.$this->login.'"';
         $count = $db->query($sql)->fetchColumn();
         if ($count > 0)
             return false;
@@ -85,8 +85,8 @@ class User
 
     public function getDb($db)
     {
-        // cette methode renvoie l'ensemble des donnees d'un user a partir de login+mail
-        $statement = $db->prepare('SELECT passwd, cle, profile, status FROM User WHERE login ="'.$this->login.'" AND mail = "'.$this->mail.'"');
+        // cette methode renvoie l'ensemble des donnees d'un user a partir de login
+        $statement = $db->prepare('SELECT passwd, cle, profile, status FROM User WHERE login ="'.$this->login.'"');
         $statement->execute();
         $result = $statement->fetchAll();
         if (count($result) === 0)
@@ -125,13 +125,19 @@ class User
         $statement->bindParam(':status', $this->status);        
         return ($statement->execute());
     }
-    public function setPasswdByLoginMail($db)
+    public function setPasswdByLogin($db)
     {
-        // cette methode modifie en base les donnees passwd d'un user a partir de login+mail
-        $sql = 'UPDATE User SET PASSWD=:passwd WHERE login ="'.$this->login.'" AND mail = "'.$this->mail.'"';
+        // cette methode modifie en base les donnees passwd d'un user a partir de login
+        $sql = 'UPDATE User SET PASSWD=:passwd WHERE login ="'.$this->login.'"';
         $statement = $db->prepare($sql);
         $statement->bindParam(':passwd', $this->passwd);
         return ($statement->execute());
     }
 
+    public function deleteUser($db)
+    {
+        $sql = 'DELETE FROM User where login="'.$this->login.'"';
+        $statement = $db->prepare($sql);
+        return ($statement->execute());
+    }
 }

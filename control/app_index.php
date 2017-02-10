@@ -9,7 +9,7 @@ function list_best_photos()
 {
 	require __DIR__ . '/../config/database.php';
 
-	echo "<h2>Les photos les plus likees du moment</h2>";
+	echo "<h2>Les photos les plus likées du moment</h2>";
 	$db = new DBAccess($DB_DSN, $DB_USER, $DB_PASSWORD);
 	$image = new Image();
 
@@ -43,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 			{
 				$data = array(
 					'login' => $login,
-					'passwd' => hash('whirlpool',$passwd),
+					'passwd' => hash('whirlpool',$passwd)
 				);
 				$user = new User($data);
 				$db = new DBAccess($DB_DSN, $DB_USER, $DB_PASSWORD);

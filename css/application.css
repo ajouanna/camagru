@@ -18,11 +18,13 @@ tr:nth-child(even) {
 #connect_button {
 	display: initial;
 }
+
 .footer {
     height: 100px;
     position: absolute;
     bottom: 0;
 }
+
 .vignette {
 	width:200px;
 	height:auto;
@@ -44,9 +46,11 @@ tr:nth-child(even) {
 	width: 30%;
 }
 
-.logo {
+.logo_img {
+	margin: 10px 10px 10px 10px;
 	float: left;
-	height: 100%;
+	height: 60px;
+	width: auto;
 }
 
 .logo_img {
