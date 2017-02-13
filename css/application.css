@@ -15,8 +15,19 @@ tr:nth-child(even) {
     background-color: #dddddd;
 }
 
+label {
+	display: inline-block;
+	width: 70px;
+	text-align: right;
+}​
+
 #connect_button {
 	display: initial;
+}
+
+
+.header {
+    height: 100px;
 }
 
 .footer {
@@ -31,6 +42,41 @@ tr:nth-child(even) {
 }
 
 .montage {
+	display:inline;
+	position: relative;
+}
+
+.main {
+	display:block;
+}
+
+.images {
+	position: relative;
+	height: 500px;
+}
+
+.background_image, .video, .selected_image, .resulting_image {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+}
+
+#imgtag, #canvas {
+    display: none;
+}
+
+.boutons_montage {
+	
+}
+.side {
+	/*
+    position: absolute;
+    right: 100px;
+    top: 10px;
+*/
+}
+
+.miniatures li {
 	display: inline;
 }
 
@@ -87,11 +133,6 @@ tr:nth-child(even) {
 	text-align: center;
 }
 
-label {
-	display: inline-block;
-	width: 70px;
-	text-align: right;
-}​
 
 #loginModal {
 	display: none; /* Hidden by default */
