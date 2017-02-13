@@ -44,13 +44,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 				}
 				else
 				{
-					$url="http://$_SERVER[HTTP_HOST]$_SERVER['REQUEST_URI']".'?login='.urlencode($login).'&mail='.urlencode($mail).'&cle='.urlencode($cle);
-					echo $url.PHP_EOL;
-					// FIX THIS : il faut envoyer sur une autre page : la page de validation !
-					//$esc_url = htmlspecialchars( $url, ENT_QUOTES, 'UTF-8' );
-					//echo $esc_url.PHP_EOL;
+					$url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'].'?login='.urlencode($login).'&mail='.urlencode($mail).'&cle='.urlencode($cle);
 					$message = "Veuillez cliquer sur le lien suivant pour confirmer votre inscription : ".$url;
-					//echo $message.PHP_EOL; 
 					mail($mail, 'Votre inscription a Camagru',$message);
 ?>
 <script>
