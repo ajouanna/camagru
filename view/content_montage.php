@@ -4,14 +4,14 @@
 	<div class="main">
 		<div class="images">
 				<div class="background_image" style="z-index:2;"/>
-					<img id="background" src="" width="500" height="375" alt="image de fond">
+					<img id="background" src="" width="500" height="auto" alt="image de fond">
 				</div>
-				<div class="video" width="500" height="375" alt="webcam" style="z-index:1;">
-				    <video autoplay id="videoElement">
+				<div class="video"  alt="webcam" style="z-index:1;">
+				    <video autoplay id="videoElement" width="500" height="auto">
 				    </video>
 			    </div>
 			    <div class="selected_image" style="z-index:1;">
-		    		<img id="imgtag" src="" width="500" height="375" alt="capture d'image"/>
+		    		<img id="imgtag" src="" width="500" height="auto" alt="capture d'image"/>
 		    	</div>
 		    	<div class="resulting_image">
 			       	<canvas id="canvas" width="500" height="375"></canvas>
@@ -20,7 +20,7 @@
 		<div class="boutons_montage">
 		        <input type="button" value="Prendre une photo" id="save" />
 			    <input id="fileselect" type="file" accept="image/*" capture="camera">
-		       	<input type="submit" value="Enregistrer votre montage">
+		       	<input id="save_to_server" type="submit" value="Enregistrer votre montage">
 		</div>
 		<div class="miniatures">
 		<?php
@@ -56,7 +56,8 @@ var sel = document.getElementById('fileselect');
 var background = document.getElementById('background');
 
 document.addEventListener('DOMContentLoaded', function(){
-        v = document.getElementById('videoElement');
+	// au chargement du DOM, afficher la video dans le canvas
+    v = document.getElementById('videoElement');
     canvas = document.getElementById('canvas');
     context = canvas.getContext('2d');
     w = canvas.width;
@@ -68,21 +69,38 @@ function draw(v,c,w,h) {
 
 	if(v.paused || v.ended) return false;
 
+	// affiche le cliche de la video dans le canvas
     context.drawImage(v,0,0,w,h);
     var uri = canvas.toDataURL("image/png");
+	// et met l'image obtenue dans imtag
     imgtag.src = uri;
-
-    // je recupere en dur une image a superposer
-    var vignettes = document.getElementsByClassName('vignette');
-    context.drawImage(vignettes[0], 10, 10)
 }
 
 var save=document.getElementById('save');
 save.addEventListener('click',function(e){
+		// affiche le cliche de la video dans le canvas
         draw(v,context,w,h);
-        // cacher la video
-        video.style.display='none';
+		
+		// afficher l'image
         imgtag.style.display='initial';
+});
+
+var save_to_server=document.getElementById('save_to_server');
+save_to_server.addEventListener('click',function(e){
+	// ici, on a une image de background et une image dans le imgtag
+	// => les envoyer au serveur
+	// a finir !!! Envoyer le tout au serveur pour faire le montage
+	var xhr = new XMLHttpRequest();
+	xhr.open('POST', 'generate_image.php', true);
+	xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+	xhr.onload = function () {
+    // do something to response
+    // console.log(this.responseText);
+	};
+	var params = 'image='+imgtag.src+'&image_incruste='+background.src;
+	console.log(params);
+	xhr.send(params);
+	
 });
 
 var fr;
@@ -94,6 +112,7 @@ sel.addEventListener('change',function(e){
     fr.onload = receivedData;
 
     fr.readAsDataURL(f);
+	
     // cacher la video
     video.style.display='none';
     imgtag.style.display='initial';
