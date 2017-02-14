@@ -91,13 +91,13 @@ save_to_server.addEventListener('click',function(e){
 	// => les envoyer au serveur
 	// a finir !!! Envoyer le tout au serveur pour faire le montage
 	var xhr = new XMLHttpRequest();
-	xhr.open('POST', 'generate_image.php', true);
+	xhr.open('POST', '../control/generate_image.php', true);
 	xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 	xhr.onload = function () {
-    // do something to response
-    // console.log(this.responseText);
+		// cas d'erreur
+		console.log(this.responseText);
 	};
-	var params = 'image='+imgtag.src+'&image_incruste='+background.src;
+	var params = 'image='+imgtag.src+'&image_incrustee='+background.src;
 	console.log(params);
 	xhr.send(params);
 	
