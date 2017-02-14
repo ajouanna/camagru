@@ -3,7 +3,7 @@
 <div class = "montage">
 	<div class="main">
 		<div class="images">
-				<div class="background_image" style="z-index:0;"/>
+				<div class="background_image" style="z-index:2;"/>
 					<img id="background" src="" width="500" height="375" alt="image de fond">
 				</div>
 				<div class="video" width="500" height="375" alt="webcam" style="z-index:1;">
@@ -103,5 +103,10 @@ function receivedData() {
       imgtag.src = fr.result;
 }
 
+function select_image(elem){
+	console.log("selection d une image");
+	background.style.display='initial';
+    background.src=elem.src;
+}
 
 </script>
