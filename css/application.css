@@ -25,12 +25,12 @@ label {
 	display: initial;
 }
 
-
 .header {
     height: 100px;
 }
 
 .footer {
+    right: 10px;
     height: 100px;
     position: absolute;
     bottom: 0;
@@ -47,12 +47,15 @@ label {
 }
 
 .main {
-	display:block;
+	display: block;
+	float: left;
+	position: relative;
 }
 
 .images {
 	position: relative;
 	height: 500px;
+	width: 80%;
 }
 
 .background_image, .video, .selected_image, .resulting_image {
@@ -68,13 +71,6 @@ label {
 .boutons_montage {
 	
 }
-.side {
-	/*
-    position: absolute;
-    right: 100px;
-    top: 10px;
-*/
-}
 
 .miniatures li {
 	display: inline;
@@ -85,7 +81,7 @@ label {
 }
 
 .side {
-	border-width: 2px;
+    border-width: 2px;
 	border-style:solid;
 	border-color:black;
 	float: right;
