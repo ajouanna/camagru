@@ -1,2 +1,2 @@
 <?PHP
-echo "Work in progress";
+// rien de passionant...
