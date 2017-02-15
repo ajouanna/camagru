@@ -1,8 +1,6 @@
 <?php
 // affichage de la page d'administration 
   session_start();
-
-  require __DIR__ . '/../control/app_montage.php';
 ?>
 
 <!DOCTYPE html>
@@ -17,6 +15,7 @@
 <link rel="stylesheet" href="/camagru/css/application.css" />
 </head>
 <?php
+require __DIR__ . '/../control/app_montage.php';
 include('../view/header.php');
 include('../view/content_montage.php');
 include('../view/footer.php');

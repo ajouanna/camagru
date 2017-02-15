@@ -95,12 +95,7 @@ label {
 .logo_img {
 	margin: 10px 10px 10px 10px;
 	float: left;
-	height: 60px;
-	width: auto;
-}
-
-.logo_img {
-	width: 140px;
+	width: 100px;
 	height: auto;
 }
 
