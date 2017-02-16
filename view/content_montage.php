@@ -19,7 +19,7 @@
 		</div>
 		<div class="boutons_montage">
 		        <input type="button" value="Prendre une photo" id="save" />
-			    <input id="fileselect" type="file" accept="image/*" capture="camera">
+			    <input id="fileselect" type="file" accept=".png" capture="camera">
 		       	<input id="save_to_server" type="submit" value="Enregistrer votre montage">
 		</div>
 		<div class="miniatures">
@@ -131,4 +131,9 @@ function select_image(elem){
     background.src=elem.src;
 }
 
+function delete_image(elem) {
+	if (elem)
+		elem.parentNode.removeChild(elem);
+	console.log("A FAIRE : supprimer l'image en base");
+}
 </script>
