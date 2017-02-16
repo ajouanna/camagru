@@ -20,7 +20,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	{
 		$timestamp = mktime();
 		$dir = $_SERVER['DOCUMENT_ROOT'].'/camagru/data/';
-		$filename = $dir.$timestamp.'.png';
+		$file = $timestamp.'.png';
+		$filename = $dir.$file;
 		$parts = explode(',', $image);
 		$data = $parts[1];
 		// remplacer les blancs par des + quand les donnees viennent de Javascript canvas.toDataURL() 
@@ -50,12 +51,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		// on sauvegarde en base
 		$data = array(
 					'user_id' => $login,
-					'image_name' => $filename
+					'image_name' => $file
 		);
 		$image = new Image($data);
 		$db = new DBAccess($DB_DSN, $DB_USER, $DB_PASSWORD);
 		if (!$image->persist($db->db))
 			echo "ERREUR : probleme d'insertion en base";
+		// header('location:/camagru/view/montage.php');
 		return;
 	}
 }

@@ -29,7 +29,10 @@
 		</div>
 	</div>
 	<div class="side">
-			<p>mettre ici la liste des images deja crees</p>
+			<p>Liste des images deja crees</p>
+			<?PHP
+			listPhotos();
+			?>
 	</div>
 </div>
 <script type="text/javascript">
@@ -100,7 +103,7 @@ save_to_server.addEventListener('click',function(e){
 	var params = 'image='+imgtag.src+'&image_incrustee='+background.src;
 	console.log(params);
 	xhr.send(params);
-	
+	window.location.pathname = '/camagru/view/montage.php';
 });
 
 var fr;
