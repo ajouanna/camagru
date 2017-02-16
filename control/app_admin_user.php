@@ -53,7 +53,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	else if (isset($_POST['suppress']))
 	{
 		$login = $_SESSION['logged_on_user'];
-		if (empty($login))
+		$profile = $_SESSION['profile'];
+		if (!empty($profile) && $profile === "ADMIN")
+		{
+			echo "ERREUR : un administrateur ne peux pas supprimer son propre compte!";
+		}
+		else if (empty($login))
 		{
 			echo "ERREUR : pas d'utilisateur loggué !";
 		}
