@@ -1,4 +1,5 @@
 <?php
+require __DIR__ . '/../config/database.php';
 
 class Image
 {
@@ -9,7 +10,12 @@ class Image
 
     public function __construct($data = null)
     {
-        // a faire
+        if (is_array($data)) {
+            if (isset($data['user_id']))
+                $this->user_id = $data['user_id'];
+            if (isset($data['image_name']))
+                $this->image_name = $data['image_name'];
+        }
     }
 
 
@@ -19,5 +25,17 @@ class Image
         $statement->execute();
         $result = $statement->fetchAll();
         return $result;
+    }
+
+    public function persist($db)
+    {
+        $statement = $db->prepare('INSERT INTO Image
+        (user_id, image_name)
+        VALUES
+        (:user_id, :image_name)');
+        $statement->bindParam(':user_id', $this->user_id);
+        $statement->bindParam(':image_name', $this->image_name);
+        $statement->execute();
+        return true;
     }
 }
