@@ -139,20 +139,22 @@ function select_image(elem){
 
 function delete_image(elem) {
 	if (elem) {
-		console.log("Suppression d'une image");
-		var xhr = new XMLHttpRequest();
-		xhr.open('POST', '../control/delete_image.php', true);
-		xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-		xhr.onreadystatechange = function() {
-        	if (this.readyState == 4 && this.status == 200) {
-				console.log(this.responseText);
- 	       	}
- 	    };
-		var params = 'image_name='+elem.src;
-		xhr.send(params);
-		window.location.pathname = '/camagru/view/montage.php';
+		if (confirm("Voulez vous supprimer cette image ?")){
+			//console.log("Suppression d'une image");
+			var xhr = new XMLHttpRequest();
+			xhr.open('POST', '../control/delete_image.php', true);
+			xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+			xhr.onreadystatechange = function() {
+	        	if (this.readyState == 4 && this.status == 200) {
+					console.log(this.responseText);
+	 	       	}
+	 	    };
+			var params = 'image_name='+elem.src;
+			xhr.send(params);
+			window.location.pathname = '/camagru/view/montage.php';
 
-		// elem.parentNode.removeChild(elem);
+			// elem.parentNode.removeChild(elem);
+		}
 	}
 }	
 </script>

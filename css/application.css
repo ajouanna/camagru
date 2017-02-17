@@ -41,6 +41,10 @@ label {
 	height:auto;
 }
 
+.vignette:hover {
+    width:110px;
+}
+
 .montage {
 	display:inline;
 	position: relative;

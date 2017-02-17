@@ -2,11 +2,9 @@
 <h2>Gallerie</h2>
 <div class = "gallerie">
 	<div class="main">
-		<p>Partie principale</p>
-		
+		<?php
+		affiche_gallerie();
+		?>
 	</div>
-	<div class="side">
-		<p>barre latterale</p>
-		affiche_miniatures
-	</div>
+	
 </div>
