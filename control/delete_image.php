@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	else
 	{
 		$dir = $_SERVER['DOCUMENT_ROOT'].'/camagru/data/';
-		$file = basename($image_name); // attention, verifier que ca marche sous windows 
+		$file = basename($image_name); // recupere ne nom de fichier dans le path complet; attention, verifier que ca marche sous windows 
 		$filename = $dir.$file;
 		$data = array(
 					'user_id' => $login,
@@ -28,7 +28,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		$db = new DBAccess($DB_DSN, $DB_USER, $DB_PASSWORD);
 		if (!$image->delete($db->db))
 			echo "ERREUR : probleme de suppression en base";
-		// header('location:/camagru/view/montage.php');
+		if (!unlink($filename))
+			echo "ERREUR : probleme de suppression de fichier";
 		return;
 	}
 }
