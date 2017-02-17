@@ -4,7 +4,8 @@
 require __DIR__ . '/../config/database.php';
 require __DIR__ . '/../model/User.class.php';
 require __DIR__ . '/../model/Image.class.php';
-//require __DIR__ . '/../model/comment.class.php';
+require __DIR__ . '/../model/Like.class.php';
+require __DIR__ . '/../model/comment.class.php';
 require __DIR__ . '/../model/DBAccess.class.php';
 
 
@@ -13,10 +14,14 @@ function affiche_gallerie()
 echo "<p>Liste des photos</p>";
 	require __DIR__ . '/../config/database.php';
 
-	$db = new DBAccess($DB_DSN, $DB_USER, $DB_PASSWORD);
-	$image = new Image();
+	$login = $_SESSION['logged_on_user'];
 
-	//$result = $image->listPhoto($db->db);
+	$data = array('user_id' => $login);
+
+	$db = new DBAccess($DB_DSN, $DB_USER, $DB_PASSWORD);
+	$image = new Image($data);
+
+	$result = $image->listPhotos($db->db);
 
 	echo "<table><tr><th>Photo</th><th>Nom utilisateur</th><th>Likes</th><th>Commentaires</th></tr>";
 

@@ -44,7 +44,7 @@ function setup($dbh,$dbname)
 			`image_id` INT NOT NULL, 
 			`liker_id` VARCHAR(8) NOT NULL, 
 			`creation_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-			CONSTRAINT uc_image_liker UNIQUE (`image_id`, `liker_id`) // je ne veux qu'un seul like par user et par image
+			CONSTRAINT uc_image_liker UNIQUE (`image_id`, `liker_id`) /* je ne veux qu'un seul like par user et par image*/
 		)";
 	$result = $dbh->exec($sql); 
 
