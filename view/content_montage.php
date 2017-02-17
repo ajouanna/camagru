@@ -96,15 +96,21 @@ save_to_server.addEventListener('click',function(e){
 	var xhr = new XMLHttpRequest();
 	xhr.open('POST', '../control/generate_image.php', true);
 	xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-	xhr.onload = function () {
+/*	xhr.onload = function () {
 		// cas d'erreur
 		console.log(this.responseText);
-	};
+	}; */
+	xhr.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+				console.log(this.responseText);
+            }
+        };
+
 	var params = 'image='+imgtag.src+'&image_incrustee='+background.src;
 	console.log(params);
 	xhr.send(params);
 	window.location.pathname = '/camagru/view/montage.php';
-});
+	});
 
 var fr;
 
@@ -133,10 +139,20 @@ function select_image(elem){
 
 function delete_image(elem) {
 	if (elem) {
-		console.log(elem.src);
-		
+		console.log("Suppression d'une image");
+		var xhr = new XMLHttpRequest();
+		xhr.open('POST', '../control/delete_image.php', true);
+		xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+		xhr.onreadystatechange = function() {
+        	if (this.readyState == 4 && this.status == 200) {
+				console.log(this.responseText);
+ 	       	}
+ 	    };
+		var params = 'image_name='+elem.src;
+		xhr.send(params);
+		window.location.pathname = '/camagru/view/montage.php';
+
 		// elem.parentNode.removeChild(elem);
 	}
-	console.log("A FAIRE : supprimer l'image en base");
-}
+}	
 </script>
