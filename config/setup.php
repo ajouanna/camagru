@@ -52,7 +52,7 @@ function setup($dbh,$dbname)
 	$result = $dbh->exec($sql);
 
 	// creation d'une image
-	$sql="INSERT INTO Image (user_id, image_name) VALUES ('admin','data/chien.jpg');";
+	$sql="INSERT INTO Image (user_id, image_name) VALUES ('admin','chien.jpg');";
 	$result = $dbh->exec($sql);
 
 	// creation d'un commentaire

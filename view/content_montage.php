@@ -132,8 +132,11 @@ function select_image(elem){
 }
 
 function delete_image(elem) {
-	if (elem)
-		elem.parentNode.removeChild(elem);
+	if (elem) {
+		console.log(elem.src);
+		
+		// elem.parentNode.removeChild(elem);
+	}
 	console.log("A FAIRE : supprimer l'image en base");
 }
 </script>

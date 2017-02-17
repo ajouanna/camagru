@@ -15,12 +15,13 @@ function list_best_photos()
 
 	$result = $image->listBestPhotos($db->db);
 
-	echo "<table><tr><th>Photo</th><th>Likes</th></tr>";
+	echo "<table><tr><th>Photo</th><th>Nom utilisateur</th><th>Likes</th></tr>";
 
 	foreach ($result as $value) 
 	{
 		echo "<tr>";
 		echo "<td><img class='vignette' src='/camagru/data/".$value['image_name']."' alt='texte alternatif' /></td>";
+		echo "<td>".$value['user_id']."</td>";
 		echo "<td>".$value['likes']."</td>";
 		echo "</tr>";
 	}
