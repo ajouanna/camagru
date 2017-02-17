@@ -30,7 +30,7 @@ class Image
 
     public function listPhotos($db)
     {
-        // recupere les photos de l'utilsateur courant
+        // recupere les photos de l'utilsateur courant par ordre de creation descendant
         $statement = $db->prepare("SELECT image_name FROM Image WHERE user_id = :user_id ORDER BY creation_date DESC");
         $statement->bindParam(':user_id', $this->user_id);
         $statement->execute();
@@ -58,5 +58,4 @@ class Image
         $statement->execute();
         return true;
     }
-
 }
