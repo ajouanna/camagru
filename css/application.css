@@ -37,12 +37,12 @@ label {
 }
 
 .vignette {
-	width:100px;
+	width:120px;
 	height:auto;
 }
 
 .vignette:hover {
-    width:110px;
+    width:130px;
 }
 
 .montage {

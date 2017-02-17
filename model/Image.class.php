@@ -21,8 +21,9 @@ class Image
 
     public function listBestPhotos($db)
     {
-        // recupere les meilleurs photos de tous les utilisateurs
-        $statement = $db->prepare("SELECT i.image_name, i.user_id, count(l.id) likes FROM Image i INNER JOIN like_table l ON i.id = l.image_id GROUP BY i.image_name, i.user_id DESC");
+        // recupere les meilleurs photos de tous les utilisateurs avec leur nom, leur propietaire et leur nombre de likes
+        // et les renvoie dans un tableau
+        $statement = $db->prepare("SELECT i.id, i.image_name, i.user_id, count(l.id) likes FROM Image i INNER JOIN like_table l ON i.id = l.image_id GROUP BY i.id, i.image_name, i.user_id DESC");
         $statement->execute();
         $result = $statement->fetchAll();
         return $result;
@@ -30,12 +31,20 @@ class Image
 
     public function listPhotos($db)
     {
-        // recupere les photos de l'utilsateur courant par ordre de creation descendant
+        // recupere les photos de l'utilisateur par ordre de creation descendant et les renvoie dans un tableau
         $statement = $db->prepare("SELECT image_name FROM Image WHERE user_id = :user_id ORDER BY creation_date DESC");
         $statement->bindParam(':user_id', $this->user_id);
         $statement->execute();
         $result = $statement->fetchAll();
         return $result;
+    }
+
+    public function likesPerPhoto($db)
+    {
+        // renvoie le nombre de likes pour une photo donnee
+        $sql = 'SELECT count(l.id) likes FROM Image i INNER JOIN like_table l ON i.id = l.image_id';
+        $count = $db->query($sql)->fetchColumn();
+        return ($count);
     }
 
     public function persist($db)

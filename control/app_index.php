@@ -3,6 +3,7 @@
 require __DIR__ . '/../config/database.php';
 require __DIR__ . '/../model/User.class.php';
 require __DIR__ . '/../model/Image.class.php';
+require __DIR__ . '/../model/Comment.class.php';
 require __DIR__ . '/../model/DBAccess.class.php';
 
 function list_best_photos()
@@ -15,7 +16,7 @@ function list_best_photos()
 
 	$result = $image->listBestPhotos($db->db);
 
-	echo "<table><tr><th>Photo</th><th>Nom utilisateur</th><th>Likes</th></tr>";
+	echo "<table><tr><th>Photo</th><th>Nom utilisateur</th><th>Likes</th><th>Commentaires</th></tr>";
 
 	foreach ($result as $value) 
 	{
@@ -23,6 +24,17 @@ function list_best_photos()
 		echo "<td><img class='vignette' src='/camagru/data/".$value['image_name']."' alt='texte alternatif' /></td>";
 		echo "<td>".$value['user_id']."</td>";
 		echo "<td>".$value['likes']."</td>";
+		echo "<td>";
+		// lister tous les commentaires pour cette image
+		$data = array(
+					'image_id' => $value['id']
+		);
+		$comment = new Comment($data);
+		$resultComment = $comment->listByimage($db->db);
+		foreach ($resultComment as $val) {
+			echo "<li>".$val['liker_id']." : ".$val['description']."</li>";
+		}
+		echo "</td>";
 		echo "</tr>";
 	}
 }
