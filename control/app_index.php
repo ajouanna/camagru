@@ -21,7 +21,7 @@ function list_best_photos()
 	foreach ($result as $value) 
 	{
 		echo "<tr>";
-		echo "<td><img class='vignette' src='/camagru/data/".$value['image_name']."' alt='texte alternatif' /></td>";
+		echo "<td><img class='image_gallerie' src='/camagru/data/".$value['image_name']."' alt='texte alternatif' /></td>";
 		echo "<td>".$value['user_id']."</td>";
 		echo "<td>".$value['likes']."</td>";
 		echo "<td>";

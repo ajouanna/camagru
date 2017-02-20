@@ -29,10 +29,20 @@ class Image
         return $result;
     }
 
+    public function listAllPhotos($db)
+    {
+        // recupere toutes les photos par ordre de creation descendant et les renvoie dans un tableau
+        $statement = $db->prepare("SELECT id, image_name, user_id FROM Image ORDER BY creation_date DESC");
+        $statement->bindParam(':user_id', $this->user_id);
+        $statement->execute();
+        $result = $statement->fetchAll();
+        return $result;
+    }
+
     public function listPhotos($db)
     {
         // recupere les photos de l'utilisateur par ordre de creation descendant et les renvoie dans un tableau
-        $statement = $db->prepare("SELECT image_name FROM Image WHERE user_id = :user_id ORDER BY creation_date DESC");
+        $statement = $db->prepare("SELECT id, image_name, user_id FROM Image WHERE user_id = :user_id ORDER BY creation_date DESC");
         $statement->bindParam(':user_id', $this->user_id);
         $statement->execute();
         $result = $statement->fetchAll();
@@ -42,7 +52,7 @@ class Image
     public function likesPerPhoto($db)
     {
         // renvoie le nombre de likes pour une photo donnee
-        $sql = 'SELECT count(l.id) likes FROM Image i INNER JOIN like_table l ON i.id = l.image_id';
+        $sql = 'SELECT count(l.id) likes FROM Image i INNER JOIN like_table l ON i.id = l.image_id WHERE i.id='.$this->id;
         $count = $db->query($sql)->fetchColumn();
         return ($count);
     }

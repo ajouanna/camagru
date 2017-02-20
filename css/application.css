@@ -36,6 +36,11 @@ label {
     bottom: 0;
 }
 
+.image_gallerie {
+	width:250px;
+	height:auto;
+}
+
 .vignette {
 	width:120px;
 	height:auto;
