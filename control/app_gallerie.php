@@ -14,7 +14,7 @@ function affiche_gallerie()
 echo "<p>Liste des photos</p>";
 	require __DIR__ . '/../config/database.php';
 
-	$login = $_SESSION['logged_on_user'];
+	$login = trim($_SESSION['logged_on_user']);
 
 	$data = array('user_id' => $login);
 
@@ -44,10 +44,12 @@ echo "<p>Liste des photos</p>";
 		);
 		$like = new Like($data);
 		if ($like->exists($db->db))
-			echo "<button class='like_button' onclick='unlike(this)'>Je n'aime plus</button>";
+			echo "<button class='like_button' onclick='unlike(this,".$value['id'].")'>Je n'aime plus</button>";
 		else
-			echo "<button class='like_button' onclick='like(this)'>J'aime</button>";
-		echo "<button>Ajouter un commentaire</button>";
+			echo "<button class='like_button' onclick='like(this,".$value['id'].")'>J'aime</button>";
+		echo "<button class='like_button' onclick='add_comment(this,".$value['id'].")'>Ajouter un commentaire</button>";
+		
+
 		echo "</td></tr>";
 		echo "<tr><td>";
 		$data = array(

@@ -21,6 +21,18 @@ class Comment
         }
     }
 
+    public function persist($db)
+    {
+        $statement = $db->prepare('INSERT INTO comment
+        (description, image_id, liker_id)
+        VALUES
+        (:description, :image_id, :liker_id)');
+        $statement->bindParam(':description', $this->description);
+        $statement->bindParam(':image_id', $this->image_id);
+        $statement->bindParam(':liker_id', $this->liker_id);
+        return $statement->execute();
+    }
+
     public function listByimage($db)
     {
         $statement = $db->prepare("SELECT id, description, liker_id, creation_date FROM Comment WHERE image_id = :image_id ORDER BY creation_date DESC");
