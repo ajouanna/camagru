@@ -96,10 +96,6 @@ save_to_server.addEventListener('click',function(e){
 	var xhr = new XMLHttpRequest();
 	xhr.open('POST', '../control/generate_image.php', true);
 	xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-/*	xhr.onload = function () {
-		// cas d'erreur
-		console.log(this.responseText);
-	}; */
 	xhr.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
 				console.log(this.responseText);
@@ -135,6 +131,7 @@ function select_image(elem){
 	console.log("selection d une image");
 	background.style.display='initial';
     background.src=elem.src;
+    save_to_server.style.display='initial'; // afficher le bouton pour sauver le montage
 }
 
 function delete_image(elem) {

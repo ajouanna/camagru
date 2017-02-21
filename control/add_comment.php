@@ -2,6 +2,7 @@
 session_start();
 require __DIR__ . '/../config/database.php';
 require __DIR__ . '/../model/Comment.class.php';
+require __DIR__ . '/../model/User.class.php';
 require __DIR__ . '/../model/DBAccess.class.php';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	$image_id = $_POST['image_id'];
@@ -23,12 +24,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 					'image_id' => $image_id,
 					'description' => $comment
 		);
-		$comment = new Comment($data);
+		$comm = new Comment($data);
 		$db = new DBAccess($DB_DSN, $DB_USER, $DB_PASSWORD);
-		if (!$comment->persist($db->db))
+		if (!$comm->persist($db->db))
 			echo "ERREUR : probleme d'insertion en base";
-		else
+		else 
+		{
 			echo "Insertion en base reussie";
+			// ici je retrouve le createur de l'image et je lui envoie un mail
+			$user = new User();
+			if ($user->findByImage($db->db, $image_id)) 
+			{
+				$message = "Bonjour ".$user->login.", l'utilisateur ".$login." a ajouté ce commentaire sur votre photo : ".$comment;
+				mail($user->mail, 'Camagru : un utilisateur a fait un commentaire sur votre photo',$message);
+			}
+			else 
+				echo "Oups, l'utilisateur dont vous avez commenté la photo n'existe plus !";
+		}
+
 		return;
 	}
 }

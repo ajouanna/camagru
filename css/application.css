@@ -25,6 +25,10 @@ label {
 	display: initial;
 }
 
+#save_to_server {
+	display: none;
+}
+
 .header {
     height: 100px;
 }
@@ -74,7 +78,7 @@ label {
 }
 
 #imgtag, #canvas {
-    display: none;
+   display: none;
 }
 
 .boutons_montage {

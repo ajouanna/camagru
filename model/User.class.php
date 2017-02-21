@@ -140,4 +140,19 @@ class User
         $statement = $db->prepare($sql);
         return ($statement->execute());
     }
+
+    public function findByImage($db, $image_id)
+    {
+        // renvoie true si trouve et met a jour les attributs mail et login
+        // cette methode renvoie l'ensemble des donnees d'un user a partir du parametre image_id 
+        $statement = $db->prepare('SELECT login, mail FROM user u INNER JOIN image i ON i.user_id=u.login WHERE i.id='.$image_id);
+        $statement->execute();
+        $result = $statement->fetchAll();
+        if (count($result) === 0)
+            return false;
+        $value = $result[0];
+        $this->mail = $value['mail'];
+        $this->login = $value['login']; 
+        return true;
+    }
 }
