@@ -3,7 +3,10 @@
 // ce fichier est le seul que l'on laisse a la racine du site, afin de satisfaire le sujet
 // du projet. Tous les autres fichiers de presentation sont dns le repertoire view
 
-session_start();
+if(!isset($_SESSION)) 
+{ 
+	session_start(); 
+} 
 ?>
 
 <!DOCTYPE html>

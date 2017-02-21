@@ -1,5 +1,8 @@
 <?PHP
-session_start();
+if(!isset($_SESSION))
+{
+	session_start();
+}
 require __DIR__ . '/../config/database.php';
 require __DIR__ . '/../model/Image.class.php';
 require __DIR__ . '/../model/DBAccess.class.php';

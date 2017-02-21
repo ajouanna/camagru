@@ -1,6 +1,9 @@
 <?php
 /* ce script est appele pour deconnecter un utilisateur et revenir a la page d'accueil */
-session_start();
+if(!isset($_SESSION))
+{
+	session_start();
+}
 $_SESSION['logged_on_user'] = "";
 unset($_SESSION['logged_on_user']);
 $_SESSION['profile'] = "";

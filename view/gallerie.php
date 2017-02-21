@@ -1,6 +1,9 @@
 <?php
 // affichage de la page d'administration 
-  session_start();
+if(!isset($_SESSION))
+{
+	session_start();
+}
 ?>
 
 <!DOCTYPE html>

@@ -1,6 +1,9 @@
 <?php
+if(!isset($_SESSION))
+{
 	session_start();
-	require __DIR__ . '/../control/app_change_pw.php';
+}
+require __DIR__ . '/../control/app_change_pw.php';
 ?>
 
 <!DOCTYPE html>
