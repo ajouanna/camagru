@@ -29,7 +29,7 @@
 		</div>
 	</div>
 	<div class="side">
-			<p>Liste des images deja crees</p>
+			<p>Liste des images déja crées (cliquer sur une image pour la supprimer)</p>
 			<?PHP
 			listPhotos();
 			?>
@@ -55,6 +55,7 @@ function videoError(e) {
 
 var v,canvas,context,w,h;
 var imgtag = document.getElementById('imgtag');
+var imgtagsrc_initial = imgtag.src;
 var sel = document.getElementById('fileselect');
 var background = document.getElementById('background');
 
@@ -92,21 +93,25 @@ var save_to_server=document.getElementById('save_to_server');
 save_to_server.addEventListener('click',function(e){
 	// ici, on a une image de background et une image dans le imgtag
 	// => les envoyer au serveur
-	// a finir !!! Envoyer le tout au serveur pour faire le montage
-	var xhr = new XMLHttpRequest();
-	xhr.open('POST', '../control/generate_image.php', true);
-	xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-	xhr.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-				console.log(this.responseText);
-            }
-        };
+	if (imgtag.src !== imgtagsrc_initial) // on n'envoie que si une image a ete prise
+	{
+		var xhr = new XMLHttpRequest();
+		xhr.open('POST', '../control/generate_image.php', true);
+		xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+		xhr.onreadystatechange = function() {
+	            if (this.readyState == 4 && this.status == 200) {
+					console.log(this.responseText);
+					window.location.pathname = '/camagru/view/montage.php';
+	            }
+	        };
 
-	var params = 'image='+imgtag.src+'&image_incrustee='+background.src;
-	console.log(params);
-	xhr.send(params);
-	window.location.pathname = '/camagru/view/montage.php';
-	});
+		var params = 'image='+imgtag.src+'&image_incrustee='+background.src;
+		console.log(params);
+		xhr.send(params);
+	}
+	else
+		alert("Veuillez prendre une photo ou selectionner un fichier");
+});
 
 var fr;
 
@@ -144,11 +149,11 @@ function delete_image(elem) {
 			xhr.onreadystatechange = function() {
 	        	if (this.readyState == 4 && this.status == 200) {
 					console.log(this.responseText);
+					window.location.pathname = '/camagru/view/montage.php';
 	 	       	}
 	 	    };
 			var params = 'image_name='+elem.src;
 			xhr.send(params);
-			window.location.pathname = '/camagru/view/montage.php';
 
 			// elem.parentNode.removeChild(elem);
 		}

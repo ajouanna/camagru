@@ -18,11 +18,11 @@ function like(elem, image_id) {
 		xhr.onreadystatechange = function() {
         	if (this.readyState == 4 && this.status == 200) {
 				console.log(this.responseText);
+				window.location.pathname = '/camagru/view/gallerie.php';
  	       	}
  	    };
 		var params = 'image_id='+image_id;
 		xhr.send(params);
-		window.location.pathname = '/camagru/view/gallerie.php';
 	}
 }
 
@@ -35,11 +35,11 @@ function unlike(elem, image_id) {
 		xhr.onreadystatechange = function() {
         	if (this.readyState == 4 && this.status == 200) {
 				console.log(this.responseText);
+				window.location.pathname = '/camagru/view/gallerie.php';
  	       	}
  	    };
 		var params = 'image_id='+image_id;
 		xhr.send(params);
-		window.location.pathname = '/camagru/view/gallerie.php';
 	}
 }
 
@@ -58,11 +58,11 @@ function add_comment(elem, image_id) {
 			xhr.onreadystatechange = function() {
 	        	if (this.readyState == 4 && this.status == 200) {
 					console.log(this.responseText);
-	 	       	}
+					window.location.pathname = '/camagru/view/gallerie.php';
+ 	 	       	}
 	 	    };
 			var params = 'image_id='+image_id+'&comment='+comment;
 			xhr.send(params);
-			window.location.pathname = '/camagru/view/gallerie.php';
 		}
 	}
 }
