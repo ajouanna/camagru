@@ -54,6 +54,10 @@ label {
     width:130px;
 }
 
+.deluser:hover {
+color: red;
+}
+
 .montage {
 	display:inline;
 	position: relative;

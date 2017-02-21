@@ -27,10 +27,34 @@ function list_users()
 	foreach ($result as $value) 
 	{
 		echo "<tr>";
-		echo "<td>".$value['login']."</td>";
+		echo "<td class = 'deluser' onclick ='delete_user(this)'>".$value['login']."</td>";
 		echo "<td>".$value['mail']."</td>";
 		echo "<td>".$value['profile']."</td>";
 		echo "<td>".$value['status']."</td>";
 		echo "</tr>";
 	}
 }
+?>
+
+<script type="text/javascript">
+function delete_user(elem) {
+	if(elem) {
+		if (confirm("Voulez vous supprimer cet utilisateur ?")){
+			//console.log("Suppression d'un utilisateur");
+			var xhr = new XMLHttpRequest();
+			xhr.open('POST', '../control/delete_user.php', true);
+			xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+			xhr.onreadystatechange = function() {
+	        	if (this.readyState == 4 && this.status == 200) {
+					console.log(this.responseText);
+	 	       	}
+	 	    };
+			var params = 'user='+elem.innerHtml;
+			xhr.send(params);
+			window.location.pathname = '/camagru/view/admin_user.php';
+
+			// elem.parentNode.removeChild(elem);
+		}
+	}
+}
+</script>
