@@ -11,7 +11,7 @@ require __DIR__ . '/../model/DBAccess.class.php';
 
 function affiche_gallerie()
 {
-echo "<p>Liste des photos</p>";
+	echo "<p>Liste des photos</p>";
 	require __DIR__ . '/../config/database.php';
 
 	$login = trim($_SESSION['logged_on_user']);
@@ -21,7 +21,24 @@ echo "<p>Liste des photos</p>";
 	$db = new DBAccess($DB_DSN, $DB_USER, $DB_PASSWORD);
 	$image = new Image($data);
 
-	$result = $image->listAllPhotos($db->db);
+	$images_par_page=3;
+	$nombre_images=$image->countPhotos($db->db);
+	$nombre_pages=ceil($nombre_images/$images_par_page);
+	echo 'Page : ';
+	for ($i=1;$i<= $nombre_pages;$i++)
+	{
+		echo '<a href="gallerie.php?page=' . $i . '">' . $i . '</a> ';
+	}
+	if (isset($_GET['page']) && is_numeric($_GET['page']) && $_GET['page']>0 && $_GET['page']<= $nombre_pages)
+	{
+			$page=intval($_GET['page']);
+	}
+	else
+	{
+			$page=1;
+	}
+	$position = $page * $images_par_page-$images_par_page;
+	$result = $image->listBlockOfPhotos($db->db, $images_par_page, $position);
 
 	echo "<table><tr><th>Photo</th><th>Nom utilisateur</th><th>Nombre de likes</th></tr>";
 

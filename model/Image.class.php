@@ -33,10 +33,28 @@ class Image
     {
         // recupere toutes les photos par ordre de creation descendant et les renvoie dans un tableau
         $statement = $db->prepare("SELECT id, image_name, user_id FROM Image ORDER BY creation_date DESC");
-        $statement->bindParam(':user_id', $this->user_id);
         $statement->execute();
         $result = $statement->fetchAll();
         return $result;
+    }
+
+    public function listBlockOfPhotos($db, $num, $pos)
+    {
+        // recupere une partie des photos par ordre de creation descendant et les renvoie dans un tableau
+        $statement = $db->prepare('SELECT id, image_name, user_id FROM Image ORDER BY creation_date DESC LIMIT :offset, :num');
+        $statement->bindParam(':offset', $pos, PDO::PARAM_INT);
+        $statement->bindParam(':num', $num, PDO::PARAM_INT);
+        $statement->execute();
+        $result = $statement->fetchAll();
+        $statement->closeCursor();
+        return $result;
+    }
+
+    public function countPhotos($db)
+    {
+        $sql = 'SELECT count(*) as total FROM Image';
+        $count = $db->query($sql)->fetchColumn();
+        return $count;
     }
 
     public function listPhotos($db)
