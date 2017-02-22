@@ -75,7 +75,7 @@ color: red;
 	width: 80%;
 }
 
-.background_image, .video, .selected_image, .resulting_image {
+.incrust_image, .video, .selected_image, .resulting_image {
     position: absolute;
     left: 10px;
     top: 10px;

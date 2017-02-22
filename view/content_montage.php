@@ -3,8 +3,8 @@
 <div class = "montage">
 	<div class="main">
 		<div class="images">
-				<div class="background_image" style="z-index:2;"/>
-					<img id="background" src="" width="500" height="auto" alt="image de fond">
+				<div class="incrust_image" style="z-index:2;"/>
+					<img id="incrust" src="" width="500" height="auto" alt="image de fond">
 				</div>
 				<div class="video"  alt="webcam" style="z-index:1;">
 				    <video autoplay id="videoElement" width="500" height="auto">
@@ -57,7 +57,7 @@ var v,canvas,context,w,h;
 var imgtag = document.getElementById('imgtag');
 var imgtagsrc_initial = imgtag.src;
 var sel = document.getElementById('fileselect');
-var background = document.getElementById('background');
+var incrust = document.getElementById('incrust');
 
 document.addEventListener('DOMContentLoaded', function(){
 	// au chargement du DOM, afficher la video dans le canvas
@@ -91,7 +91,7 @@ save.addEventListener('click',function(e){
 
 var save_to_server=document.getElementById('save_to_server');
 save_to_server.addEventListener('click',function(e){
-	// ici, on a une image de background et une image dans le imgtag
+	// ici, on a une image d'incrustation et une image dans le imgtag
 	// => les envoyer au serveur
 	if (imgtag.src !== imgtagsrc_initial) // on n'envoie que si une image a ete prise
 	{
@@ -105,7 +105,7 @@ save_to_server.addEventListener('click',function(e){
 	            }
 	        };
 
-		var params = 'image='+imgtag.src+'&image_incrustee='+background.src;
+		var params = 'image='+imgtag.src+'&image_incrustee='+incrust.src;
 		console.log(params);
 		xhr.send(params);
 	}
@@ -134,8 +134,8 @@ function receivedData() {
 
 function select_image(elem){
 	console.log("selection d une image");
-	background.style.display='initial';
-    background.src=elem.src;
+	incrust.style.display='initial';
+    incrust.src=elem.src;
     save_to_server.style.display='initial'; // afficher le bouton pour sauver le montage
 }
 
