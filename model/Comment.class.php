@@ -13,7 +13,7 @@ class Comment
     {
         if (is_array($data)) {
             if (isset($data['description']))
-                $this->description = $data['description'];
+                $this->description = nl2br(htmlspecialchars($data['description'])); // protection 
             if (isset($data['image_id']))
                 $this->image_id = $data['image_id'];
             if (isset($data['liker_id']))

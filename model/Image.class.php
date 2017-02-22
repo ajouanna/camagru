@@ -23,7 +23,7 @@ class Image
     {
         // recupere les meilleurs photos de tous les utilisateurs avec leur nom, leur propietaire et leur nombre de likes
         // et les renvoie dans un tableau
-        $statement = $db->prepare("SELECT i.id, i.image_name, i.user_id, count(l.id) likes FROM Image i INNER JOIN like_table l ON i.id = l.image_id GROUP BY i.id, i.image_name, i.user_id DESC");
+        $statement = $db->prepare("SELECT i.id, i.image_name, i.user_id, count(l.id) likes FROM Image i INNER JOIN like_table l ON i.id = l.image_id GROUP BY i.id, i.image_name, i.user_id ORDER BY likes DESC");
         $statement->execute();
         $result = $statement->fetchAll();
         return $result;
