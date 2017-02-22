@@ -4,14 +4,14 @@
 	<div class="main">
 		<div class="images">
 				<div class="incrust_image" style="z-index:2;"/>
-					<img id="incrust" src="" width="500" height="auto" alt="image de fond">
+					<img id="incrust" src="" width="500" height="auto">
 				</div>
 				<div class="video"  alt="webcam" style="z-index:1;">
 				    <video autoplay id="videoElement" width="500" height="auto">
 				    </video>
 			    </div>
 			    <div class="selected_image" style="z-index:1;">
-		    		<img id="imgtag" src="" width="500" height="auto" alt="capture d'image"/>
+		    		<img id="imgtag" src="" width="500" height="auto"/>
 		    	</div>
 		    	<div class="resulting_image">
 			       	<canvas id="canvas" width="500" height="375"></canvas>
@@ -115,18 +115,28 @@ save_to_server.addEventListener('click',function(e){
 
 var fr;
 
-sel.addEventListener('change',function(e){
+sel.addEventListener('change',function(e) {
     var f = sel.files[0];
+	var extensions_ok		= 'png'; // n'autoriser que les png
+	var file_name			= f.name.toLowerCase(); // nom du fichier 
+	if(file_name!='') {
+		var file_array 		= file_name.split('.');
+		var file_extension	= file_array[file_array.length-1]; // extension du fichier (dernier élément)
+		if(extensions_ok.indexOf(file_extension)===-1) { 
+			alert('Type de fichier incorrect');
+		}
+		else {
+			fr = new FileReader();
+			fr.onload = receivedData;
 
-    fr = new FileReader();
-    fr.onload = receivedData;
-
-    fr.readAsDataURL(f);
-	
-    // cacher la video
-    video.style.display='none';
-    imgtag.style.display='initial';
-})
+			fr.readAsDataURL(f);
+			
+			// cacher la video
+			video.style.display='none';
+			imgtag.style.display='initial';
+		}
+	}
+});
 
 function receivedData() {
       imgtag.src = fr.result;
