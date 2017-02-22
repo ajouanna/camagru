@@ -27,7 +27,10 @@ function list_users()
 	foreach ($result as $value) 
 	{
 		echo "<tr>";
-		echo "<td class = 'deluser' onclick ='delete_user(this)'>".$value['login']."</td>";
+		if ($value['profile'] == "NORMAL")
+			echo "<td class = 'deluser' onclick ='delete_user(this)'>".$value['login']."</td>";
+		else
+			echo "<td>".$value['login']."</td>";
 		echo "<td>".$value['mail']."</td>";
 		echo "<td>".$value['profile']."</td>";
 		echo "<td>".$value['status']."</td>";
@@ -47,11 +50,11 @@ function delete_user(elem) {
 			xhr.onreadystatechange = function() {
 	        	if (this.readyState == 4 && this.status == 200) {
 					console.log(this.responseText);
+					window.location.pathname = '/camagru/view/admin.php';
 	 	       	}
 	 	    };
-			var params = 'user='+elem.innerHtml;
+			var params = 'user=' + elem.innerHTML;
 			xhr.send(params);
-			window.location.pathname = '/camagru/view/admin_user.php';
 
 			// elem.parentNode.removeChild(elem);
 		}
