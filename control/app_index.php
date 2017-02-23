@@ -37,6 +37,7 @@ function list_best_photos()
 		echo "</td>";
 		echo "</tr>";
 	}
+	echo "</table>";
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {

@@ -79,6 +79,7 @@ function affiche_gallerie()
 		}
 		echo "</td></tr>";
 	}
+	echo "</table>";
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET')

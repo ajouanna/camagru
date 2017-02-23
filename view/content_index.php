@@ -1,4 +1,4 @@
-<div class="content_index">
+<div class="page_content">
 <h1>Bienvenue sur Camagru !</h1>
 <?php
 

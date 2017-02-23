@@ -1,16 +1,16 @@
 
 <h2>Montage</h2>
-<div class = "montage">
+<div class = "page_content">
 	<div class="main">
 		<div class="images">
-				<div class="incrust_image" style="z-index:2;"/>
+				<div class="incrust_image"/>
 					<img id="incrust" src="" width="500" height="auto">
 				</div>
-				<div class="video"  alt="webcam" style="z-index:1;">
+				<div class="video"  alt="webcam">
 				    <video autoplay id="videoElement" width="500" height="auto">
 				    </video>
 			    </div>
-			    <div class="selected_image" style="z-index:1;">
+			    <div class="selected_image">
 		    		<img id="imgtag" src="" width="500" height="auto"/>
 		    	</div>
 		    	<div class="resulting_image">
@@ -18,9 +18,9 @@
 		    	</div>
 		</div>
 		<div class="boutons_montage">
-		        <input type="button" value="Prendre une photo" id="save" />
+		        <input type="button" value="Prenez une photo" id="save" />
 			    <input id="fileselect" type="file" accept=".png" capture="camera">
-		       	<input id="save_to_server" type="submit" value="Enregistrer votre montage">
+		       	<input id="save_to_server" type="submit" value="Enregistrez votre montage">
 		</div>
 		<div class="miniatures">
 		<?php
@@ -29,7 +29,7 @@
 		</div>
 	</div>
 	<div class="side">
-			<p>Liste des images déja crées (cliquer sur une image pour la supprimer)</p>
+			<p>Liste des images déja crées (cliquez sur une image pour la supprimer)</p>
 			<?PHP
 			listPhotos();
 			?>

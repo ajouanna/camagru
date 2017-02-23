@@ -1,10 +1,26 @@
-﻿body {
-	font-family: arial;
+﻿// * {-moz-box-sizing: border-box; box-sizing: border-box;}
+
+html {
+  height: 100%;
 }
+
+body {
+	min-height: 100%;
+	margin: 0;
+	padding: 0;
+	font-family: arial;
+	position: relative;
+}
+
+footer {
+    right: 0;
+    position: absolute;
+    bottom: 0;
+}
+
 table {
     font-family: arial, sans-serif;
     border-collapse: collapse;
-    width: 100%;
 }
 
 td, th {
@@ -35,11 +51,8 @@ label {
     height: 100px;
 }
 
-.footer {
-    right: 10px;
-    height: 100px;
-    position: absolute;
-    bottom: 0;
+.page_content {
+	padding-bottom : 50px;
 }
 
 .image_gallerie {
@@ -83,11 +96,21 @@ color: red;
     top: 10px;
 }
 
+.incrust_image {
+	z-index: 2;
+}
+
+.video, .selected_image {
+	z-index: 1;
+}
+
 #imgtag, #canvas {
    display: none;
 }
 
-.boutons_montage {
+.boutons_montage, .miniatures {
+	position: relative;
+	z-index: 3;
 	
 }
 

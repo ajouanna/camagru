@@ -21,7 +21,7 @@ function listPhotos()
 
 	$result = $image->listPhotos($db->db);
 
-	echo "<table><tr><th>Photo</th></tr>";
+	echo "<table>";
 
 	foreach ($result as $value) 
 	{
@@ -29,6 +29,7 @@ function listPhotos()
 		echo "<td><img class='vignette' onclick='delete_image(this)' src='/camagru/data/".$value['image_name']."' alt='texte alternatif' /></td>";
 		echo "</tr>";
 	}
+	echo "</table>";
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET')

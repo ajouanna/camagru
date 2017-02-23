@@ -1,4 +1,5 @@
-	<div class="footer">
+	<footer>
+		<hr>
 		<p>Camagru &copy; xmillero/ajouanna  2017</p>
-	</div>
+	</footer>
 </body>

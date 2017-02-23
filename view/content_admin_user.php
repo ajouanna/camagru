@@ -1,4 +1,4 @@
-<div class="content_admin_user">
+<div class="page_content">
 	<h2>Page d'administration utilisateur</h2>
 
 	<button id="change_pw_button">Changer son mot de passe</button>

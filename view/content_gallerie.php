@@ -1,6 +1,6 @@
 
-<h2>Gallerie</h2>
-<div class = "gallerie">
+<div class = "page_content">
+	<h2>Gallerie</h2>
 	<div class="main">
 		<?php
 		affiche_gallerie();

@@ -38,7 +38,7 @@ function list_users()
 	}
 }
 ?>
-
+	</table>
 <script type="text/javascript">
 function delete_user(elem) {
 	if(elem) {

@@ -40,7 +40,7 @@ function print_status()
 	<div class="header">
 		<div class="logo">
 		<a href="/camagru/index.php">
-			<img class="logo_img" src="/camagru/img/42-logo.png" alt="Camagru" title="Camagru"/>
+			<img class="logo_img" src="/camagru/img/42-logo.png" alt="Camagru" title="Camagru : retour à la page d'index"/>
 		</a>
 		</div>
 		<div class="header_right">
