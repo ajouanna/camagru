@@ -39,6 +39,7 @@ class User
     {
         if ($this->checkUserNonexistant($db))
         {
+			try {
             $statement = $db->prepare('INSERT INTO User
             (login, mail, passwd, cle, profile, creation_date, status)
             VALUES
@@ -51,6 +52,12 @@ class User
             $statement->bindParam(':profile', $this->profile);
             $statement->bindParam(':status', $this->status);
             $statement->execute();
+			}
+			catch (PDOException $e)
+			{
+				// a priori, ce cas n'arrive qu'en cas de doublon sur mail
+				return false;
+			}
             return true;
         }
         else 

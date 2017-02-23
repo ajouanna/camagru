@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 			echo "ERREUR : tous les champs doivent être remplis !";
 		}
 		else if ($new_passwd !== $new_new_passwd)
-			echo "ERREUR : les deux valeurs du nouveau mot de passe sont differentes";
+			echo "ERREUR : les deux valeurs du nouveau mot de passe sont différentes";
 		else if (empty($login))
 			echo "ERREUR : pas d'utilisateur loggué";
 		else
@@ -39,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 				{	
 					$user->passwd = hash('whirlpool',$new_passwd);
 					$user->setPasswdByLogin($db->db);
-					echo "DEBUG : mot de passe mis a jour";
+					echo "Mot de passe mis a jour";
 				}
 			} catch (NestedValidationException $e) {
 				echo "<ul>";

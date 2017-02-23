@@ -48,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 		if (empty($login) || empty ($passwd))
 		{
-			echo "ERREUR : tous les champs doivent etre remplis !";
+			echo "ERREUR : tous les champs doivent être remplis !";
 		}
 		else
 		{
@@ -63,13 +63,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 				$db = new DBAccess($DB_DSN, $DB_USER, $DB_PASSWORD);
 				if (!$user->checkCredentials($db->db))
 				{
-					echo "Erreur : login ou mdp errone";
+					echo "Erreur : login ou mdp erroné";
 				}
 				else
 				{	
 					if ($user->status !== 'ACTIVATED')
 					{
-						echo "Erreur : veuillez vous activer avant de vous conecter !";
+						echo "Erreur : veuillez vous activer avant de vous connecter !";
 					}
 					else
 					{
@@ -94,7 +94,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		$mail = trim($_POST['mail']);
 		if (empty($mail))
 		{
-			echo "ERREUR : le champ mail doit etre rempli !";
+			echo "ERREUR : le champ mail doit être rempli !";
 		}
 		else
 		{

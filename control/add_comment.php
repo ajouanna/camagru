@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	$login = $_SESSION['logged_on_user'];
 	if (empty($image_id) || empty($comment))
 	{
-		echo "ERREUR : les champs image_id et comment doivent etre remplis !";
+		echo "ERREUR : les champs image_id et comment doivent être remplis !";
 		return;
 	}
 	else if (empty($login))
@@ -30,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		$comm = new Comment($data);
 		$db = new DBAccess($DB_DSN, $DB_USER, $DB_PASSWORD);
 		if (!$comm->persist($db->db))
-			echo "ERREUR : probleme d'insertion en base";
+			echo "ERREUR : problème d'insertion en base";
 		else 
 		{
 			echo "Insertion en base reussie";

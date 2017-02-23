@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	$login = $_SESSION['logged_on_user'];
 	if (empty($image) || empty ($image_incrustee))
 	{
-		echo "ERREUR : les champs image et image_incrustee doivent etre remplis !";
+		echo "ERREUR : les champs image et image_incrustée doivent être remplis !";
 		return;
 	}
 	else if (empty($login))

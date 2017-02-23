@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	$login = $_SESSION['logged_on_user'];
 	if (empty($image_id))
 	{
-		echo "ERREUR : le champs image_id doit etre rempli !";
+		echo "ERREUR : le champs image_id doit être rempli !";
 		return;
 	}
 	else if (empty($login))
@@ -30,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		{
 			if (!$like->delete($db->db))
 			{
-				echo "ERREUR : probleme de suppression en base";
+				echo "ERREUR : problème de suppression en base";
 				return;
 			}
 		}

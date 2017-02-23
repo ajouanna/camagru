@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	$captcha = trim($_POST['captcha']);
 	if (empty($login) || empty($mail) || empty ($passwd) || empty($captcha))
 	{
-		echo "ERREUR : tous les champs doivent etre remplis !";
+		echo "ERREUR : tous les champs doivent être remplis !";
 	}
 	else
 	{
@@ -40,16 +40,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 				$db = new DBAccess($DB_DSN, $DB_USER, $DB_PASSWORD);
 				if (!$user->persist($db->db))
 				{
-					echo "Erreur : login ou mdp deja utilise";
+					echo "Erreur : login ou mdp déjà utilisé";
 				}
 				else
 				{
 					$url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'].'?login='.urlencode($login).'&mail='.urlencode($mail).'&cle='.urlencode($cle);
 					$message = "Veuillez cliquer sur le lien suivant pour confirmer votre inscription : ".$url;
-					mail($mail, 'Votre inscription a Camagru',$message);
+					mail($mail, 'Votre inscription à Camagru',$message);
 ?>
 <script>
-alert('Utilisateur cree avec succes! Un lien de validation va vous etre envoye par email');
+alert('Utilisateur crée avec succès! Un lien de validation va vous être envoyé par email');
 window.location.pathname = '/camagru/index.php';
 </script>
 <?PHP
@@ -72,7 +72,7 @@ else if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 	// (dans ce cas il y a les parametres login, cle et mail)
 	if (empty($_GET['login']) || empty($_GET['mail']) || empty ($_GET['cle']))
 	{
-		echo "DEBUG : les champs login, mail et cle doivent etre remplis !";
+		// echo "DEBUG : les champs login, mail et cle doivent etre remplis !";
 	}
 	else
 	{
@@ -89,19 +89,19 @@ else if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 		{
 			if ($user->cle !== $cle)
 			{
-				echo "Erreur de cle !";
+				echo "Erreur de clé !";
 			}
 			else
 			{
 				if ($user->status === 'ACTIVATED')
-					echo "Erreur, utilisateur deja active";
+					echo "Erreur, utilisateur deja activé";
 				else
 				{
 					$user->status='ACTIVATED';
 					$user->setDB($db->db);
 					?>
 <script>
-alert('Utilisateur active avec succes!');
+alert('Utilisateur activé avec succes!');
 window.location.pathname = '/camagru/index.php';
 </script>
 <?PHP

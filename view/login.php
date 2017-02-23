@@ -9,7 +9,7 @@
   <!-- Modal content -->
   <div class="modal-content">
 	<span id="login_close" class="close">&times;</span>
-	<button id="create_user_button">On ne se connait pas ? Creer un compte !</button>
+	<button id="create_user_button">On ne se connaît pas ? Créer un compte !</button>
 
 	<form class="form" action="" method="post">
 		<p>Tapez votre login et mot de passe</p>
@@ -19,12 +19,12 @@
   		</div>
 
 		 <div class="form-group">
-		<label for="passwd">Password:</label>
+		<label for="passwd">Mot de passe:</label>
 		<input type="password" class="form-control" name="passwd">
   		</div>
   		<button type="submit" name="submit" value="submit" class="btn">Valider</button>
 		</form>  
-	<button id="forgotten_passwd_button">Mot de passe oublie ?</button>
+	<button id="forgotten_passwd_button">Mot de passe oublié ?</button>
 	</div>
 </div>
 <!-- MODALE POUR LE MDP OUBLIE -->

@@ -18,7 +18,8 @@ function setup($dbh,$dbname)
 			`creation_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
 			`status` ENUM('NOT_ACTIVATED', 'ACTIVATED') NOT NULL,
 			`cle` varchar(32),
-			PRIMARY KEY (login)
+			PRIMARY KEY (login),
+			CONSTRAINT uc_mail UNIQUE (`mail`) /* unicite du mail dans la base */
 		) ";
 	$result = $dbh->exec($sql); 
 

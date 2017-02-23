@@ -24,7 +24,4 @@ require __DIR__ . '/../control/app_change_pw.php';
     include('../view/footer.php');
 ?>
 </div>
-<?php
-footer();
-?>
 </html>

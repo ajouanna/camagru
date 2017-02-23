@@ -22,20 +22,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_SESSION['change_pw_login'])
 	else
 	{
 		if ($user->cle !== $_SESSION['change_pw_cle'])
-			echo "Erreur : cle erronee";
+			echo "Erreur : clé erronée";
 		else
 		{
 			$new_passwd = $_POST['new_passwd'];
 			$new_new_passwd = $_POST['new_new_passwd'];
 			if (empty($new_passwd) || empty ($new_new_passwd) || $new_passwd !== $new_new_passwd)
 			{
-				echo "Erreur de saisie : les deux saisies sont differentes ou vides !";
+				echo "Erreur de saisie : les deux saisies sont différentes ou vides !";
 			}
 			else
 			{
 				$user->passwd = hash('whirlpool',$new_passwd);
 				$user->setPasswdByLogin($db->db);
-				echo "DEBUG : user mis a jour";
+				echo "User mis a jour";
 				unset($_SESSION['change_pw_login']);
 				unset($_SESSION['change_pw_mail']);
 				unset($_SESSION['change_pw_cle']);
@@ -49,5 +49,3 @@ window.location.pathname = '/camagru/index.php';
 		}
 	}
 }
-else
-	echo "DEBUG : En attente de saisie du formulaire";

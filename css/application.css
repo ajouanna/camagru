@@ -66,11 +66,12 @@ label {
 }
 
 .vignette:hover {
-    width:130px;
+    border: 2px solid red;
 }
 
 .deluser:hover {
 color: red;
+border: 2px solid red;
 }
 
 .montage {

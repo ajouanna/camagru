@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	$login = $_SESSION['logged_on_user'];
 	if (empty($image_name))
 	{
-		echo "ERREUR : le champ image_name doit etre rempli !";
+		echo "ERREUR : le champ image_name doit être rempli !";
 		return;
 	}
 	else if (empty($login))

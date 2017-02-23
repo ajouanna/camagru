@@ -6,9 +6,9 @@
 if ($_SERVER['REQUEST_URI'] !== "/camagru/view/admin_user.php")
 	echo '<button id="user_admin_button">Administrer son compte</button>';
 if ($_SERVER['REQUEST_URI'] !== "/camagru/view/montage.php")
-	echo '<button id="montage">Acceder au montage</button>';
+	echo '<button id="montage">Accéder au montage</button>';
 if ($_SERVER['REQUEST_URI'] !== "/camagru/view/gallerie.php")
-	echo '<button id="gallerie">Acceder à la galerie</button>';
+	echo '<button id="gallerie">Accéder à la galerie</button>';
 ?>
 
 <script>

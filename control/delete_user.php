@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 			$db = new DBAccess($DB_DSN, $DB_USER, $DB_PASSWORD);
 			if (!$user->deleteUser($db->db))
 			{
-				echo "Erreur : suppression";
+				echo "ERREUR : suppression";
 			}
 			else
 			{
