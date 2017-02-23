@@ -1,6 +1,6 @@
 
-<h2>Montage</h2>
 <div class = "page_content">
+	<h2>Montage</h2>
 	<div class="main">
 		<div class="images">
 				<div class="incrust_image"/>
