@@ -1,4 +1,6 @@
-﻿
+﻿body {
+	font-family: arial;
+}
 table {
     font-family: arial, sans-serif;
     border-collapse: collapse;
@@ -91,6 +93,7 @@ color: red;
 
 .miniatures li {
 	display: inline;
+	text-decoration: underline;
 }
 
 .gallerie {
@@ -103,6 +106,9 @@ color: red;
 	border-color:black;
 	float: right;
 	width: 30%;
+	text-decoration: underline;
+	text-align: center;
+	font-family: arial;
 }
 
 .logo_img {
