@@ -8,7 +8,7 @@ if ($_SERVER['REQUEST_URI'] !== "/camagru/view/admin_user.php")
 if ($_SERVER['REQUEST_URI'] !== "/camagru/view/montage.php")
 	echo '<button id="montage">Acceder au montage</button>';
 if ($_SERVER['REQUEST_URI'] !== "/camagru/view/gallerie.php")
-	echo '<button id="gallerie">Acceder à la gallerie</button>';
+	echo '<button id="gallerie">Acceder à la galerie</button>';
 ?>
 
 <script>

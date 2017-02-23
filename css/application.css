@@ -114,8 +114,12 @@ color: red;
 	
 }
 
-.miniatures li {
+.miniatures li{
 	display: inline;
+	text-decoration: underline;
+}
+
+#texte {
 	text-decoration: underline;
 }
 

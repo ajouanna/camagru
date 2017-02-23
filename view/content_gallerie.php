@@ -1,6 +1,6 @@
 
 <div class = "page_content">
-	<h2>Gallerie</h2>
+	<h2>Galerie</h2>
 	<div class="main">
 		<?php
 		affiche_gallerie();
@@ -44,7 +44,7 @@ function unlike(elem, image_id) {
 }
 
 function add_comment(elem, image_id) {
-	// il faut que je puisse paser le nom de l'image et l'identifiant de l'utilisateur via des parametres de POST
+	// il faut que je puisse passer le nom de l'image et l'identifiant de l'utilisateur via des parametres de POST
 	// a add_comment.php
 	if (elem) {
 		console.log('add_comment');
