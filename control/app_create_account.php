@@ -101,7 +101,7 @@ else if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 					$user->setDB($db->db);
 					?>
 <script>
-alert('Utilisateur activé avec succes!');
+alert('Utilisateur activé avec succès!');
 window.location.pathname = '/camagru/index.php';
 </script>
 <?PHP

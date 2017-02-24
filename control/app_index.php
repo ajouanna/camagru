@@ -74,7 +74,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 					else
 					{
 						// TBD : si l'utilisateur n'est pas confirme, le lui dire et ne pas accepter la connexion
-						echo "Utilisateur ".$login." loggue avec succes".PHP_EOL;
+						echo "Utilisateur ".$login." loggué avec succès".PHP_EOL;
 						$_SESSION['logged_on_user'] = $login;
 						$_SESSION['status'] = "";
 						$_SESSION['profile'] = $user->profile;
