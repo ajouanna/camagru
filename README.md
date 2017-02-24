@@ -17,3 +17,4 @@ data : images resulantes du montage
 
 
 Avant de faire marcher le site, creer la base de donnees sous config en tapant : php setup.php
+(si necessaire, modifier user et mdp de la bdd dans database.php)

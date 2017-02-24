@@ -98,7 +98,7 @@ else if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 				else
 				{
 					$user->status='ACTIVATED';
-					$user->setDB($db->db);
+					$user->setDb($db->db);
 					?>
 <script>
 alert('Utilisateur activé avec succès!');
