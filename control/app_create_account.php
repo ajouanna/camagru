@@ -40,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 				$db = new DBAccess($DB_DSN, $DB_USER, $DB_PASSWORD);
 				if (!$user->persist($db->db))
 				{
-					echo "Erreur : login ou mdp déjà utilisé";
+					echo "Erreur : login ou mail déjà utilisé";
 				}
 				else
 				{

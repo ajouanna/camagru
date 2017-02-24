@@ -70,6 +70,7 @@ class Image
     public function likesPerPhoto($db)
     {
         // renvoie le nombre de likes pour une photo donnee
+        // A CORRIGER : utiliser bindParam pour eviter une faille SQL dans la ligne ci-dessous !
         $sql = 'SELECT count(l.id) likes FROM Image i INNER JOIN like_table l ON i.id = l.image_id WHERE i.id='.$this->id;
         $count = $db->query($sql)->fetchColumn();
         return ($count);

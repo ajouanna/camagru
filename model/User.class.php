@@ -28,8 +28,15 @@ class User
 
     public function checkUserNonexistant($db)
     {
+        /*
         $sql = 'SELECT count(*) FROM User WHERE login ="'.$this->login.'"';
-        $count = $db->query($sql)->fetchColumn();
+        $count = $db->query($sql)->fetchColumn(); 
+        */
+        $statement = $db->prepare('SELECT count(*) AS counter FROM User WHERE login = :login');
+        $statement->bindParam(':login', $this->login);
+        $statement->execute();
+        $result = $statement->fetchAll();
+        $count = $result[0]['counter'];
         if ($count > 0)
             return false;
         return true;
@@ -69,8 +76,10 @@ class User
         // cette methode recupere en base le profil de l'utilisateur a partir de login et passwd
         // et renvoie true si ces valeurs sont correctes, false sinon
 
-        $sql = 'SELECT profile, status FROM User WHERE login ="'.$this->login.'" AND passwd = "'.$this->passwd.'"';
+        $sql = 'SELECT profile, status FROM User WHERE login = :login AND passwd = :passwd';
         $statement = $db->prepare($sql);
+        $statement->bindParam(':login', $this->login);
+        $statement->bindParam(':passwd', $this->passwd);
         $statement->execute();
         $result = $statement->fetchAll();
 
@@ -93,7 +102,8 @@ class User
     public function getDb($db)
     {
         // cette methode renvoie l'ensemble des donnees d'un user a partir de login
-        $statement = $db->prepare('SELECT passwd, cle, profile, status FROM User WHERE login ="'.$this->login.'"');
+        $statement = $db->prepare('SELECT passwd, cle, profile, status FROM User WHERE login = :login');
+        $statement->bindParam(':login', $this->login);
         $statement->execute();
         $result = $statement->fetchAll();
         if (count($result) === 0)
@@ -109,7 +119,8 @@ class User
     public function getUserByMail($db)
     {
         // cette methode renvoie l'ensemble des donnees d'un user a partir du mail
-        $statement = $db->prepare('SELECT login, passwd, cle, profile, status FROM User WHERE mail = "'.$this->mail.'"');
+        $statement = $db->prepare('SELECT login, passwd, cle, profile, status FROM User WHERE mail = :mail');
+        $statement->bindParam(':mail', $this->mail);
         $statement->execute();
         $result = $statement->fetchAll();
         if (count($result) === 0)
@@ -126,33 +137,36 @@ class User
     public function setDb($db)
     {
         // cette methode modifie en base les donnees passwd et status d'un user a partir de login+passwd
-        $sql = 'UPDATE User SET PASSWD=:passwd, STATUS=:status WHERE login ="'.$this->login.'" AND passwd = "'.$this->passwd.'"';
+        $sql = 'UPDATE User SET STATUS=:status WHERE login = :login';
         $statement = $db->prepare($sql);
-        $statement->bindParam(':passwd', $this->passwd);
-        $statement->bindParam(':status', $this->status);        
+        $statement->bindParam(':status', $this->status);
+        $statement->bindParam(':login', $this->login);        
         return ($statement->execute());
     }
     public function setPasswdByLogin($db)
     {
         // cette methode modifie en base les donnees passwd d'un user a partir de login
-        $sql = 'UPDATE User SET PASSWD=:passwd WHERE login ="'.$this->login.'"';
+        $sql = 'UPDATE User SET PASSWD=:passwd WHERE login = :login';
         $statement = $db->prepare($sql);
+        $statement->bindParam(':login', $this->login);
         $statement->bindParam(':passwd', $this->passwd);
         return ($statement->execute());
     }
 
     public function deleteUser($db)
     {
-        $sql = 'DELETE FROM User where login="'.$this->login.'"';
+        $sql = 'DELETE FROM User where login=:login';
         $statement = $db->prepare($sql);
+        $statement->bindParam(':login', $this->login);  
         return ($statement->execute());
     }
 
     public function findByImage($db, $image_id)
     {
         // renvoie true si trouve et met a jour les attributs mail et login
-        // cette methode renvoie l'ensemble des donnees d'un user a partir du parametre image_id 
-        $statement = $db->prepare('SELECT login, mail FROM user u INNER JOIN image i ON i.user_id=u.login WHERE i.id='.$image_id);
+        // cette methode renvoie un user a partir du parametre image_id 
+        $statement = $db->prepare('SELECT login, mail FROM user u INNER JOIN image i ON i.user_id=u.login WHERE i.id=:image_id');
+        $statement->bindParam(':image_id', $image_id);  
         $statement->execute();
         $result = $statement->fetchAll();
         if (count($result) === 0)
