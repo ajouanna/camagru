@@ -50,7 +50,7 @@ function setup($dbh,$dbname)
 	$result = $dbh->exec($sql); 
 
 	// creation de l'administrateur avec mot de passe 1234
-	$sql = "INSERT INTO User (login, mail, passwd, profile, status) VALUES ('admin', 'ajouanna@hotmail.com', '2f9959b230a44678dd2dc29f037ba1159f233aa9ab183ce3a0678eaae002e5aa6f27f47144a1a4365116d3db1b58ec47896623b92d85cb2f191705daf11858b8', 'ADMIN', 'ACTIVATED')";
+	$sql = "INSERT INTO User (login, mail, passwd, profile, status) VALUES ('admin', 'camagru@mail.com', 'xxxxx', 'ADMIN', 'ACTIVATED')";
 	$result = $dbh->exec($sql);
 
 	// creation d'une image
